@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../commands"
+		},
+		{
+			"name": "guidebot",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

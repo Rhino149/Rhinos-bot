@@ -1,0 +1,1465 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Embeded links meta tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rhino-Bot" />
+   <meta property="og:description" content="Rhino-Bot is a bot that&#39;s part moderation and part economy." /> 
+    <meta property="og:image" content="https://cdn.discordapp.com/avatars/636311667239551006/8f6f6f19053aa826bc64cb6eb98fec23.png?size=2048" 
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/public/darkly.css" />
+  <link rel="stylesheet" href="/public/dashboard.css" />
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js" integrity="sha256-zG8v+NWiZxmjNi+CvUYnZwKtHzFtdO8cAKUIdB8+U9I=" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/v/bs4/dt-1.10.16/cr-1.4.1/r-2.2.0/datatables.min.js"></script>
+  <link rel='icon' href='https://cdn.discordapp.com/avatars/636311667239551006/8f6f6f19053aa826bc64cb6eb98fec23.png?size=2048'>
+  <title>
+    Rhino-Bot
+  </title>
+</head>
+
+<body>
+  <a name="top"></a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="/" ><img src="https://cdn.discordapp.com/avatars/636311667239551006/8f6f6f19053aa826bc64cb6eb98fec23.png?size=2048" width="30" height="30" class="d-inline-block rounded-circle" alt="Rhino-Bot"> <span class="align-middle">Rhino-Bot</span></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar01" aria-controls="navbar01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/commands">Commands</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://discordapp.com/oauth2/authorize?client_id=636311667239551006&scope=bot&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A9559%2Fcallback">Add to Server</a></li>
+          <li class="nav-item"><a class="nav-link" href="/stats">On 41  Servers</a></li>
+        </ul>
+        <ul class="navbar-nav">
+          
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="userDropdown" >
+                <img src="?size=32" width="25" height="25" class="d-inline-block align-middle rounded-circle" alt="">
+                King Of Rhinos, AnonymousRhino#8578
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <h6 class="dropdown-header"><i class="fa fa-user" aria-hidden="true"></i> King Of Rhinos, AnonymousRhino</h6>
+                <a class="dropdown-item" href="/dashboard"><i class="fa fa-cogs" aria-hidden="true"></i> Dashboard</a>
+                
+                  <a class="dropdown-item" href="/admin"><i class="fa fa-key"></i> Admin</a>
+                
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+              </div>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-breadcrumb" style="width: 100%; margin-top: 16px;">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+          
+          <li class="breadcrumb-item active">Commands</li>
+          
+        </ol>
+      </div>
+  </div>
+  <div class="container">
+
+
+<div class="container">
+  <h2>Commands</h2>
+  
+    <br>
+    <h3>Moderation</h3>
+    <br>
+    <div class="card-columns">
+      
+        <div class="card">
+          <h3 class="card-header">ban</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Bans the mentioned user.</p>
+          </div>
+          <div class="card-footer">Permission Level: Moderator<br /><a href="#" data-toggle="modal" data-target="#banModal">Click for more...</a></div>
+        </div>
+        <div id="banModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">ban</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: ban [mention] [reason]</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">kick</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Kicks the mentioned user.</p>
+          </div>
+          <div class="card-footer">Permission Level: Moderator<br /><a href="#" data-toggle="modal" data-target="#kickModal">Click for more...</a></div>
+        </div>
+        <div id="kickModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">kick</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: kick [mention] [reason]</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">mute</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Mutes the user.</p>
+          </div>
+          <div class="card-footer">Permission Level: Moderator<br /><a href="#" data-toggle="modal" data-target="#muteModal">Click for more...</a></div>
+        </div>
+        <div id="muteModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">mute</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: mute [mention] [reason]</p>
+                <p>Command Aliases: silence</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">purge</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Purges some Messages</p>
+          </div>
+          <div class="card-footer">Permission Level: Moderator<br /><a href="#" data-toggle="modal" data-target="#purgeModal">Click for more...</a></div>
+        </div>
+        <div id="purgeModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">purge</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: purge [amount]</p>
+                <p>Command Aliases: clear, nuke</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">role</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">It can give/remove a role to/from a user.
+ WARNING DO NOT GIVE MODS THE ABILITY TO HAVE ADMIN PERMS YOUR SERVER WILL BE AT GREAT RISK!</p>
+          </div>
+          <div class="card-footer">Permission Level: Administrator<br /><a href="#" data-toggle="modal" data-target="#roleModal">Click for more...</a></div>
+        </div>
+        <div id="roleModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">role</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: role &lt;-add | -remove&gt; &lt;role name&gt;</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">tempmute</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Mutes the user temporarily</p>
+          </div>
+          <div class="card-footer">Permission Level: Moderator<br /><a href="#" data-toggle="modal" data-target="#tempmuteModal">Click for more...</a></div>
+        </div>
+        <div id="tempmuteModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">tempmute</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: tempmute [mention] [s/m/h/d] [reason]</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">unban</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Unbans the user.</p>
+          </div>
+          <div class="card-footer">Permission Level: Moderator<br /><a href="#" data-toggle="modal" data-target="#unbanModal">Click for more...</a></div>
+        </div>
+        <div id="unbanModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">unban</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: unban [id] [reason]</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">unmute</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Unmutes the user</p>
+          </div>
+          <div class="card-footer">Permission Level: Moderator<br /><a href="#" data-toggle="modal" data-target="#unmuteModal">Click for more...</a></div>
+        </div>
+        <div id="unmuteModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">unmute</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: unmute [mention] [reason]</p>
+                <p>Command Aliases: unsilence</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  
+    <br>
+    <h3>Economy</h3>
+    <br>
+    <div class="card-columns">
+      
+        <div class="card">
+          <h3 class="card-header">beg</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Too lazy to work I guess.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#begModal">Click for more...</a></div>
+        </div>
+        <div id="begModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">beg</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: beg</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">bet</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Bet some coins.
+ Also A thanks to Northern Lights#7944 for helping in the creation of this command.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#betModal">Click for more...</a></div>
+        </div>
+        <div id="betModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">bet</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: bet &lt;amount&gt;</p>
+                <p>Command Aliases: gamble</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">buy</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Purchases an item from the store.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#buyModal">Click for more...</a></div>
+        </div>
+        <div id="buyModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">buy</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: buy &lt;item&gt;</p>
+                <p>Command Aliases: purchase</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">daily</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Claim your daily bonus every 24 hours.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#dailyModal">Click for more...</a></div>
+        </div>
+        <div id="dailyModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">daily</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: daily</p>
+                <p>Command Aliases: claim, bonus, dailybonus</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">deposit</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">deposit coins</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#depositModal">Click for more...</a></div>
+        </div>
+        <div id="depositModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">deposit</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: deposit &lt;amount&gt;</p>
+                <p>Command Aliases: dep</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">garden</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Plant your seeds.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#gardenModal">Click for more...</a></div>
+        </div>
+        <div id="gardenModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">garden</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: garden</p>
+                <p>Command Aliases: plants, plant</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">inventory</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Shows all things in your inventory.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#inventoryModal">Click for more...</a></div>
+        </div>
+        <div id="inventoryModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">inventory</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: inventory</p>
+                <p>Command Aliases: inv, backpack, bp, bag</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">bal</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Shows either yours or a mentioned user&#39;s money.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#balModal">Click for more...</a></div>
+        </div>
+        <div id="balModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">bal</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: bal [@name]</p>
+                <p>Command Aliases: money, balance, $, wallet</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">pay</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Pays &lt;money&gt; to &lt;member&gt;.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#payModal">Click for more...</a></div>
+        </div>
+        <div id="payModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">pay</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: pay &lt;member&gt; &lt;money&gt;</p>
+                <p>Command Aliases: give, givemoney, paymoney</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">profile</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Shows yours or [member]&#39;s profile.</p>
+          </div>
+          <div class="card-footer">Permission Level: member<br /><a href="#" data-toggle="modal" data-target="#profileModal">Click for more...</a></div>
+        </div>
+        <div id="profileModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">profile</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: profile [member]</p>
+                <p>Command Aliases: p</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">rep</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Gives +1 rep to &lt;member&gt;.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#repModal">Click for more...</a></div>
+        </div>
+        <div id="repModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">rep</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: rep &lt;member&gt;</p>
+                <p>Command Aliases: +rep, giverep, repgive</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">rob</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Rob someones hard earned coins command made by LȏяԀ_Yȗṿяѧj#4173</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#robModal">Click for more...</a></div>
+        </div>
+        <div id="robModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">rob</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: rob &lt;@user&gt;</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">roulette</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">A twist to roulette.
+ Also a thanks to Northern Lights#7944 for helping in the creation of this command.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#rouletteModal">Click for more...</a></div>
+        </div>
+        <div id="rouletteModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">roulette</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: roulette &lt;amount&gt; &lt;guess&gt;</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">shop</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Shows a list of purchasable items.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#shopModal">Click for more...</a></div>
+        </div>
+        <div id="shopModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">shop</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: shop</p>
+                <p>Command Aliases: store</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">slots</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Slots some coins.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#slotsModal">Click for more...</a></div>
+        </div>
+        <div id="slotsModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">slots</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: slots &lt;amount&gt;</p>
+                <p>Command Aliases: slot</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">weekly</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Claim your weekly bonus every week.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#weeklyModal">Click for more...</a></div>
+        </div>
+        <div id="weeklyModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">weekly</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: weekly</p>
+                <p>Command Aliases: wclaim, wbonus, weeklybonus</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">withdraw</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Withdraw coins</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#withdrawModal">Click for more...</a></div>
+        </div>
+        <div id="withdrawModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">withdraw</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: withdraw &lt;amount&gt;</p>
+                <p>Command Aliases: with</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">work</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Go work lazy ass</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#workModal">Click for more...</a></div>
+        </div>
+        <div id="workModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">work</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: work</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  
+    <br>
+    <h3>Fun</h3>
+    <br>
+    <div class="card-columns">
+      
+        <div class="card">
+          <h3 class="card-header">coin</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Flips a coin.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#coinModal">Click for more...</a></div>
+        </div>
+        <div id="coinModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">coin</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: coin</p>
+                <p>Command Aliases: flipcoin, fc</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">divorce</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Divorces your spouse.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#divorceModal">Click for more...</a></div>
+        </div>
+        <div id="divorceModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">divorce</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: divorce</p>
+                <p>Command Aliases: div, fixyourlife</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">donate</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Shows information about donating.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#donateModal">Click for more...</a></div>
+        </div>
+        <div id="donateModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">donate</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: donate</p>
+                <p>Command Aliases: donating</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">marry</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Proposes to &lt;member&gt;.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#marryModal">Click for more...</a></div>
+        </div>
+        <div id="marryModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">marry</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: marry &lt;member&gt;</p>
+                <p>Command Aliases: propose, preparetoruinyourlife</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">meme</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Searches for the dankest of memes in the dankest of subreddits.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#memeModal">Click for more...</a></div>
+        </div>
+        <div id="memeModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">meme</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: meme</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">rps</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Simple game of Rock Paper Scissors.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#rpsModal">Click for more...</a></div>
+        </div>
+        <div id="rpsModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">rps</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: rps &lt;option&gt;</p>
+                <p>Command Aliases: psr, spr</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">say</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Makes the bot say whatever you want.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#sayModal">Click for more...</a></div>
+        </div>
+        <div id="sayModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">say</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: say</p>
+                <p>Command Aliases: talk</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">urban</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Searches the Urban Dictionary for [term].</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#urbanModal">Click for more...</a></div>
+        </div>
+        <div id="urbanModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">urban</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: urbandictionary [term]</p>
+                <p>Command Aliases: urban-dictionary, ud</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  
+    <br>
+    <h3>Utility</h3>
+    <br>
+    <div class="card-columns">
+      
+        <div class="card">
+          <h3 class="card-header">commands</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Displays a list of all commands under &lt;category&gt;.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#commandsModal">Click for more...</a></div>
+        </div>
+        <div id="commandsModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">commands</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: commands &lt;category&gt;</p>
+                <p>Command Aliases: cmds, c</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">help</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Shows useful information.
+If &lt;command&gt; is specified, will show description and usage of that command.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#helpModal">Click for more...</a></div>
+        </div>
+        <div id="helpModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">help</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: help &lt;command&gt;</p>
+                <p>Command Aliases: h</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  
+    <br>
+    <h3>System</h3>
+    <br>
+    <div class="card-columns">
+      
+        <div class="card">
+          <h3 class="card-header">conf</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Modify the default configuration for all guilds.</p>
+          </div>
+          <div class="card-footer">Permission Level: Bot Admin<br /><a href="#" data-toggle="modal" data-target="#confModal">Click for more...</a></div>
+        </div>
+        <div id="confModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">conf</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: conf &lt;view/get/edit&gt; &lt;key&gt; &lt;value&gt;</p>
+                <p>Command Aliases: defaults</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">deval</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Evaluates arbitrary javascript.</p>
+          </div>
+          <div class="card-footer">Permission Level: Bot Owner<br /><a href="#" data-toggle="modal" data-target="#devalModal">Click for more...</a></div>
+        </div>
+        <div id="devalModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">deval</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: deval [...code]</p>
+                <p>Command Aliases: de</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">ehelp</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Displays all the available commands for your permission level.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#ehelpModal">Click for more...</a></div>
+        </div>
+        <div id="ehelpModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">ehelp</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: ehelp [command]</p>
+                <p>Command Aliases: eh, ehalp</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">eval</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Evaluates arbitrary javascript.</p>
+          </div>
+          <div class="card-footer">Permission Level: Bot Owner<br /><a href="#" data-toggle="modal" data-target="#evalModal">Click for more...</a></div>
+        </div>
+        <div id="evalModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">eval</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: eval [...code]</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">invite</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Gets the bots invite link.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#inviteModal">Click for more...</a></div>
+        </div>
+        <div id="inviteModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">invite</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: invite</p>
+                <p>Command Aliases: i</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">reboot</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Shuts down the bot. If running under PM2, bot will restart automatically.</p>
+          </div>
+          <div class="card-footer">Permission Level: Bot Admin<br /><a href="#" data-toggle="modal" data-target="#rebootModal">Click for more...</a></div>
+        </div>
+        <div id="rebootModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">reboot</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: reboot</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">reload</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Reloads a command that&#34;s been modified.</p>
+          </div>
+          <div class="card-footer">Permission Level: Bot Admin<br /><a href="#" data-toggle="modal" data-target="#reloadModal">Click for more...</a></div>
+        </div>
+        <div id="reloadModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">reload</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: reload [command]</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">set</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">View or change settings for your server.</p>
+          </div>
+          <div class="card-footer">Permission Level: Administrator<br /><a href="#" data-toggle="modal" data-target="#setModal">Click for more...</a></div>
+        </div>
+        <div id="setModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">set</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: set &lt;view/get/edit&gt; &lt;key&gt; &lt;value&gt;</p>
+                <p>Command Aliases: setting, settings, conf</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  
+    <br>
+    <h3>Being worked on/Broken</h3>
+    <br>
+    <div class="card-columns">
+      
+        <div class="card">
+          <h3 class="card-header">highlow</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Guess if the number will be high or low.
+ Also A thanks to Northern Lights#7944 for helping in the creation of this command.</p>
+          </div>
+          <div class="card-footer">Permission Level: Bot Owner<br /><a href="#" data-toggle="modal" data-target="#highlowModal">Click for more...</a></div>
+        </div>
+        <div id="highlowModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">highlow</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: highlow &lt;amount&gt;</p>
+                <p>Command Aliases: hl</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">sell</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Sells items</p>
+          </div>
+          <div class="card-footer">Permission Level: Bot Owner<br /><a href="#" data-toggle="modal" data-target="#sellModal">Click for more...</a></div>
+        </div>
+        <div id="sellModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">sell</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: sell [amount of stone]</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  
+    <br>
+    <h3>Info</h3>
+    <br>
+    <div class="card-columns">
+      
+        <div class="card">
+          <h3 class="card-header">mylevel</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Tells you your permission level for the current message location.</p>
+          </div>
+          <div class="card-footer">Permission Level: Blacklisted<br /><a href="#" data-toggle="modal" data-target="#mylevelModal">Click for more...</a></div>
+        </div>
+        <div id="mylevelModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">mylevel</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: mylevel</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">partner</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">This command is to see our partners of the bot!</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#partnerModal">Click for more...</a></div>
+        </div>
+        <div id="partnerModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">partner</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: partner</p>
+                <p>Command Aliases: partnership, p</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">ping</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">It like... Pings. Then Pongs. And it&#39;s not Ping Pong.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#pingModal">Click for more...</a></div>
+        </div>
+        <div id="pingModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">ping</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: ping</p>
+                <p>Command Aliases: </p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">remind</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Reminds you at the specified time of the specified thing.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#remindModal">Click for more...</a></div>
+        </div>
+        <div id="remindModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">remind</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: remind &lt;time&gt; &lt;text&gt;</p>
+                <p>Command Aliases: r, remindme</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">serverinfo</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">If you wanna see the servers info.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#serverinfoModal">Click for more...</a></div>
+        </div>
+        <div id="serverinfoModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">serverinfo</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: serverinfo</p>
+                <p>Command Aliases: si</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">stats</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Gives some useful bot statistics</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#statsModal">Click for more...</a></div>
+        </div>
+        <div id="statsModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">stats</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: stats</p>
+                <p>Command Aliases: botinfo, bi</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">userinfo</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">If you wanna see someones or yours UI.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#userinfoModal">Click for more...</a></div>
+        </div>
+        <div id="userinfoModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">userinfo</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: userinfo [mention]</p>
+                <p>Command Aliases: ui</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">vote</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Upvote the bot!</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#voteModal">Click for more...</a></div>
+        </div>
+        <div id="voteModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">vote</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: vote</p>
+                <p>Command Aliases: upvote</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  
+    <br>
+    <h3>Secret</h3>
+    <br>
+    <div class="card-columns">
+      
+        <div class="card">
+          <h3 class="card-header">shush</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">.</p>
+          </div>
+          <div class="card-footer">Permission Level: User<br /><a href="#" data-toggle="modal" data-target="#shushModal">Click for more...</a></div>
+        </div>
+        <div id="shushModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">shush</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: royal</p>
+                <p>Command Aliases: royal, royale, rocky</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  
+    <br>
+    <h3>Developer</h3>
+    <br>
+    <div class="card-columns">
+      
+        <div class="card">
+          <h3 class="card-header">setmoney</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Pays &lt;money&gt; to &lt;member&gt;.</p>
+          </div>
+          <div class="card-footer">Permission Level: Bot Owner<br /><a href="#" data-toggle="modal" data-target="#setmoneyModal">Click for more...</a></div>
+        </div>
+        <div id="setmoneyModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">setmoney</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: setmoney &lt;member&gt; &lt;money&gt;</p>
+                <p>Command Aliases: sm</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="card">
+          <h3 class="card-header">where</h3>
+          <div class="card-body" style="height: 100px;">
+            <p class="card-text">Shows you which Discord has &lt;channel id&gt; and the owner&#39;s ID</p>
+          </div>
+          <div class="card-footer">Permission Level: Bot Support<br /><a href="#" data-toggle="modal" data-target="#whereModal">Click for more...</a></div>
+        </div>
+        <div id="whereModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header btn-info disabled">
+                <h4 class="modal-title">where</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Usage Example: where &lt;channel id&gt;</p>
+                <p>Command Aliases: whereis, whereisthatbloodyerrorcomingfrom???, source</p>
+              </div>
+              <div class="modal-footer"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button></div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  

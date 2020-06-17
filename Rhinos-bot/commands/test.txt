@@ -1,0 +1,21 @@
+exports.conf = {
+  enabled: true,
+  guildOnly: true,
+  aliases: [],
+  permLevel: "User" //Or  Moderator, Administrator, Owner
+};
+
+exports.help = {
+  name: "NAME OF COMMAND",
+  category: "Miscelaneous",
+  description: "ENTER DESCRIPTION HERE.",
+  usage: "ENTER USAGE HERE"
+};
+
+client.settings.get("default").prefix
+
+
+        let perms = message.member.permissions;
+
+        // Check if a member has a specific permission on the guild!
+        let has_Roles = perms.has("MANAGE_ROLES");
