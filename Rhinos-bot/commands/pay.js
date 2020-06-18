@@ -21,12 +21,9 @@ exports.run = async (client, message, args) => {
     })
   
     const money = client.money.get(`${member.user.id}`, 'money')
-    client.money.set(`${member.user.id}`, parseInt(money) + parseInt(args[1]), 'money')
-    console.log(parseInt(money))
-    console.log(parseInt(args[1]))
-    console.log(parseInt(money) + parseInt(args[1]))
-    client.money.set(`${message.author.id}`, parseInt(yourMoney) - parseInt(args[1]), 'money')
-    message.channel.send(`You gave **${member.user.tag}** \`$${parseInt(args[1])}\`\n**${member.user.tag}'s balance:** $${parseInt(money) + parseInt(args[1])}\n**Your balance:** $${parseInt(yourMoney) - parseInt(args[1])}`)
+    client.money.set(`${member.user.id}`, Number(money) + Number(args[1]), 'money')
+    client.money.set(`${message.author.id}`, Number(yourMoney) - Number(args[1]), 'money')
+    message.channel.send(`You gave **${member.user.tag}** \`$${Number(args[1])}\`\n**${member.user.tag}'s balance:** $${Number(money) + Number(args[1])}\n**Your balance:** $${Number(yourMoney) - Number(args[1])}`)
   }
   
   exports.conf = {

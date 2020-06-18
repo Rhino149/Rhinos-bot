@@ -3,9 +3,7 @@ const cooldowns = new Map();
 const humanizeDuration = require('humanize-duration');
 
 exports.run = async (client, message, args) => {
-	Number(args[0])
   if (!args[0]) return message.channel.send('You need to specify a number to bet.');
-  if (isNaN(args[0])) return message.channel.send('Invalid amount.');
   const cooldown = cooldowns.get(message.author.id);
   if (cooldown) {
     const remaining = humanizeDuration(cooldown - Date.now());
@@ -23,6 +21,15 @@ exports.run = async (client, message, args) => {
   });
 
   const money = client.money.get(key, 'money');
+	if (isNaN(args[0])) {
+	if (args[0] === 'all') {
+	args[0] = money;
+	} else if (args[0] === 'half') {
+	args[0] = Math.round(money / 2);
+	} else {
+	return message.channel.send('Invalid amount')
+	}
+}
     let sides1 = Math.floor(Math.random() * 10) + 1;
     let sides2 = Math.floor(Math.random() * 10) + 1;
 	
@@ -34,14 +41,7 @@ exports.run = async (client, message, args) => {
       return message.channel.send('You cannot bet less than $50 and cannot bet more than $50000.');
       if (money > 2000000)
       return message.channel.send('You are too rich to gamble.')
-     for(let i; i < 1e6; i++){}
-// evaluates to true
-1e0 === 1;
-1e1 === 10;
-1e2 === 100;
-1e3 === 1000;
-1e4 === 10000;
-1e5 === 100000;
+
     if (sides1 > sides2) {
       let embed = new Discord.RichEmbed()
         .setAuthor("Winner winner!")

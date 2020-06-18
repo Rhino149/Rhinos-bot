@@ -1,6 +1,5 @@
 exports.run = async (client, message, args, config) => { 
     if (!args[0]) return message.channel.send('You need to specify an amount to withdraw.')
-  if (isNaN(args[0])) return message.channel.send('Invalid amount.')
   const key = message.author.id;
   
            client.money.ensure(`${key}`, {
@@ -11,6 +10,15 @@ exports.run = async (client, message, args, config) => {
 
            const bank = client.money.get(key, 'bank')
            const money = client.money.get(key, 'money')
+	if (isNaN(args[0])) {
+	if (args[0] === 'all') {
+	args[0] = bank;
+	} else if (args[0] === 'half') {
+	args[0] = Math.round(bank / 2);
+	} else {
+        return message.channel.send('Invalid amount.')
+        }
+}
         if (bank < args[0]) 
             return message.channel.send('You do not have enough money to withdraw.')
         if (bank <= 0) 
