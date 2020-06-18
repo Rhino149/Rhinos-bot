@@ -17,12 +17,13 @@ exports.run = async (client, message, args, config) => {
             return message.channel.send('You do not have enough money to withdraw.') 
             if (args[0] <= 0) 
             return message.channel.send('You cannot withdraw nothing.')
+	if (args[0] < 1)                                                   return message.channel.send('Must be a whole number.')
         if (bank == undefined)
         return message.channel.send('Your bank needs to have more than 0')
          else 
-            message.channel.send(`You withdrawed $${args[0]}.`)
-            client.money.set(key, (money + parseInt(args[0])), 'money');
-            client.money.set(key, (bank - parseInt(args[0])), 'bank');
+            message.channel.send(`You withdrawed $${Number(args[0])}.`)
+            client.money.set(key, (money + Number(args[0])), 'money');
+            client.money.set(key, (bank - Number(args[0])), 'bank');
 
          
         }

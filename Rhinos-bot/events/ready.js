@@ -35,7 +35,7 @@ let activities = [
   // Make the bot "play the game" which is the help command with default prefix.
   setInterval(function() { 
   
-    client.user.setActivity(`${client.guilds.size} guilds | ${client.users.size} users doing ${client.settings.get("default").prefix}help | ${activities[i++ % activities.length]}`, {type: "WATCHING"})
+    client.user.setActivity(`${client.guilds.size} guilds | prefix is ${client.settings.get("default").prefix} | ${activities[i++ % activities.length]}`, {type: "WATCHING"})
   
 }, 10000)
 };

@@ -10,7 +10,6 @@ exports.run = async (client, message, args, config) => {
          
            const bank = client.money.get(key, 'bank')
            const money = client.money.get(key, 'money')
-        
         if (money < args[0])
         return message.channel.send('You do not have enough money to deposit.')
         if (bank >= 5000000)
@@ -20,12 +19,13 @@ exports.run = async (client, message, args, config) => {
             return message.channel.send('You cannot deposit nothing.')
             if (args[0] > 5000000) 
             return message.channel.send('You cannot deposit this much.')
+	if (args[0] < 1)                                                   return message.channel.send('Must be a whole number.')
             if (bank == NaN)
         return client.money.get(key, 'bank')
         else {
-            message.channel.send(`You deposited $${args[0]}.`)
-            client.money.set(key, (money - parseInt(args[0])), 'money');
-            client.money.set(key, (bank + parseInt(args[0])), 'bank');
+            message.channel.send(`You deposited $${Number(args[0])}.`)
+            client.money.set(key, (money - Number(args[0])), 'money');
+            client.money.set(key, (bank + Number(args[0])), 'bank');
         }
     }
         exports.conf = {

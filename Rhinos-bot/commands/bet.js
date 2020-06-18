@@ -3,6 +3,7 @@ const cooldowns = new Map();
 const humanizeDuration = require('humanize-duration');
 
 exports.run = async (client, message, args) => {
+	Number(args[0])
   if (!args[0]) return message.channel.send('You need to specify a number to bet.');
   if (isNaN(args[0])) return message.channel.send('Invalid amount.');
   const cooldown = cooldowns.get(message.author.id);
@@ -24,6 +25,7 @@ exports.run = async (client, message, args) => {
   const money = client.money.get(key, 'money');
     let sides1 = Math.floor(Math.random() * 10) + 1;
     let sides2 = Math.floor(Math.random() * 10) + 1;
+	
     if (money < args[0])
       return message.channel.send('You do not have enough money.');
     if (args[0] < 50)
@@ -32,19 +34,22 @@ exports.run = async (client, message, args) => {
       return message.channel.send('You cannot bet less than $50 and cannot bet more than $50000.');
       if (money > 2000000)
       return message.channel.send('You are too rich to gamble.')
-      if (e1 = args[0] * 1)
-      if (e2 = args[0] * 100)
-      if (e3 = args[0] * 1000)
-      if (e4 = args[0] * 10000)
-     
+     for(let i; i < 1e6; i++){}
+// evaluates to true
+1e0 === 1;
+1e1 === 10;
+1e2 === 100;
+1e3 === 1000;
+1e4 === 10000;
+1e5 === 100000;
     if (sides1 > sides2) {
       let embed = new Discord.RichEmbed()
         .setAuthor("Winner winner!")
         .addField("You rolled: ", +String(sides1), inline = true)
         .addField("Rhino rolled: ", +String(sides2), inline = true)
-        .addField(`You now have`, `$${(money + parseInt(args[0]))}`)
+        .addField(`You now have`, `$${(money + Number(args[0]))}`)
         .setColor("GREEN");
-      client.money.set(key, (money + parseInt(args[0])), 'money');
+      client.money.set(key, (money + Number(args[0])), 'money');
       message.channel.send(embed);
       return;
 
@@ -53,10 +58,10 @@ exports.run = async (client, message, args) => {
         .addField("You rolled: ", +String(sides1), inline = true)
         .addField("Rhino rolled: ", +String(sides2), inline = true)
         .setAuthor("Sucks to suck")
-        .addField(`You now have`, `$${(money - parseInt(args[0]))}`)
+        .addField(`You now have`, `$${(money - Number(args[0]))}`)
         .setColor("RED");
       message.channel.send(embed);
-      client.money.set(key, (money - parseInt(args[0])), 'money');
+      client.money.set(key, (money - Number(args[0])), 'money');
       return;
 
     } else if (sides1 == sides2) {

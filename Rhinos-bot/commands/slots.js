@@ -43,9 +43,9 @@ exports.run = async (client, message, args) => {
        .setFooter('You won!', icon)
        .setTitle(':slot_machine: Slots :slot_machine:')
        .addField('Result:', `| ${slots[result1] } | ${slots[result2] } | ${slots[result3]} |`)
-       .addField('Amount Won: ', `$${args[0]}`, inline = false)
+       .addField('Amount Won: ', `$${Number(args[0])}`, inline = false)
        .setColor(0xF4E842)
-    client.money.set(key, (money + parseInt(args[0])), 'money')
+    client.money.set(key, (money + Number(args[0])), 'money')
     message.channel.send(embed);
     return;
 
@@ -54,9 +54,9 @@ exports.run = async (client, message, args) => {
        .setFooter('You won!', icon)
        .setTitle(':slot_machine: Slots :slot_machine:')
        .addField('Result:', `| ${slots[result1] } | ${slots[result2] } | ${slots[result3]} |`)
-       .addField('Amount: ', `$${args[0]}`)
+       .addField('Amount: ', `$${Number(args[0])}`)
        .setColor(0xF4E842)
-    client.money.set(key, (money + parseInt(args[0])), 'money')
+    client.money.set(key, (money + Number(args[0])), 'money')
     message.channel.send(embed);
     return;
 
@@ -66,9 +66,9 @@ exports.run = async (client, message, args) => {
          .setFooter('You won!', icon)
          .setTitle(':slot_machine: Slots :slot_machine:')
          .addField('Result:', `| ${slots[result1] } | ${slots[result2] } | ${slots[result3]} |`)
-         .addField('Amount:', ` $${args[0]}`)
+         .addField('Amount:', ` $${Number(args[0])}`)
          .setColor(0xF4E842)
-      client.money.set(key, (money + parseInt(args[0])), 'money')
+      client.money.set(key, (money + Number(args[0])), 'money')
       message.channel.send(embed);
       return;
 
@@ -77,9 +77,9 @@ exports.run = async (client, message, args) => {
          .setFooter('You won!', icon)
          .setTitle(':slot_machine: Slots :slot_machine:')
          .addField('Result:', `| ${slots[result1] } | ${slots[result2] } | ${slots[result3]} |`)
-         .addField('Amount:', ` $${args[0]}`)
+         .addField('Amount:', ` $${Number(args[0])}`)
          .setColor(0xF4E842)
-      client.money.set(key, (money + parseInt(args[0])), 'money')
+      client.money.set(key, (money + Number(args[0])), 'money')
       message.channel.send(embed);
       return;
 } else {
@@ -87,9 +87,9 @@ exports.run = async (client, message, args) => {
      .setFooter('You lost!', icon)
      .setTitle(':slot_machine: Slots :slot_machine:')
      .addField('Result:', `| ${slots[result1] } | ${slots[result2] } | ${slots[result3]} |`)
-     .addField('Balance: ', `$${(money - parseInt(args[0]))}`, inline = false)
+     .addField('Balance: ', `$${(money - Number(args[0]))}`, inline = false)
      .setColor("RED")
-     client.money.set(key, (money - parseInt(args[0])), 'money');
+     client.money.set(key, (money - Number(args[0])), 'money');
   message.channel.send(embed);
   return;
 }
