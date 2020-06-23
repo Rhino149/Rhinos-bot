@@ -29,7 +29,7 @@ exports.run = async (client, message, args, config) => {
         if (bank == undefined)
         return message.channel.send('Your bank needs to have more than 0')
          else 
-            message.channel.send(`You withdrawed $${Number(args[0])}.`)
+            message.channel.send(`You withdrawed $${Number(args[0]).toLocaleString('en')}.`)
             client.money.set(key, (money + Number(args[0])), 'money');
             client.money.set(key, (bank - Number(args[0])), 'bank');
 

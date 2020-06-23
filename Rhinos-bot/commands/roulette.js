@@ -56,7 +56,7 @@ let guess = (args[1])
      .addField("You won:", `$${String(total_amount)}`)
      .setAuthor('You Won!')
      .setColor("GREEN")
-     client.money.set(key, (money + parseInt(total_amount)), 'money');
+     client.money.set(key, (money + Number(total_amount)), 'money');
      message.channel.send(embed)
     return; 
         }
@@ -66,9 +66,9 @@ let guess = (args[1])
      .addField(`The number was:`, String(number), inline = true)
      .setAuthor("You Lost!")
      .setColor("RED")
-     .addField("You lost:", `$${parseInt(args[0])}`, inline = false)
+     .addField("You lost:", `$${Number(args[0])}`, inline = false)
      message.channel.send(embed)
-     client.money.set(key, (money - parseInt(args[0])), 'money');
+     client.money.set(key, (money - Number(args[0])), 'money');
      score = 0
      return;
     }

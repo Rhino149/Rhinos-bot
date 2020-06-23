@@ -10,8 +10,6 @@ exports.run = (client, message, args) => {
       .setDescription("Gets the bots invite link.", `${client.getSettings("guild").prefix}`)
       .addField((["My invite link"]), (inviteLink))
       .addField("Support", '[Support Server](https://discord.gg/bzRh5Mz)')
-      .addField("Community", `[Community Server](https://discord.gg/sSevHSK)`)
-      .addField("My subreddit", `https://www.reddit.com/r/DankRhinosRumble/`)
       .setColor("RANDOM")
       .setFooter("Thank you for inviting me");
   

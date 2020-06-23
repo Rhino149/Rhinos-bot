@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports = (client, guild, user, message) => {
-  const settings = client.settings.get(message.guild.id)  
+  const settings = client.settings.get("message.guild.id")  
   if (guild === null) return
 
   if (settings.logMessageUpdates == 'true') {

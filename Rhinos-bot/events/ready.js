@@ -31,11 +31,13 @@ module.exports = async client => {
 (`${client.settings.get("default").prefix}help and in ${client.guilds.size} guilds, With ${client.users.size} Users`, 15000, (`Watching Rhino-Bot support!`, {type: "PLAYING"}))
 */
 let activities = [
- "Rhino-Bot support!"], i = 0;
+ "Rhino-Bot support!",
+"I am a growing Economy bot Invite me!",
+"To invite me do r!invite in server with the bot!"], i = 0;
   // Make the bot "play the game" which is the help command with default prefix.
   setInterval(function() { 
   
-    client.user.setActivity(`${client.guilds.size} guilds | prefix is ${client.settings.get("default").prefix} | ${activities[i++ % activities.length]}`, {type: "WATCHING"})
+    client.user.setActivity(`My prefix is ${client.settings.get("default").prefix} | I'm in ${client.guilds.size} servers that are using me! | ${activities[i++ % activities.length]}`, {type: "PLAYING"})
   
 }, 10000)
 };

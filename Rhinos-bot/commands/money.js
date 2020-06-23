@@ -15,8 +15,8 @@ exports.run = async (client, message, args) => {
         };
       let embed = new Discord.RichEmbed()
       .setAuthor(`${member.user.tag}'s bal`)
-      .addField(`Wallet:`, `$${money}.`, inline = true)
-      .addField( `Bank:`, `$${bank}/5,000,000`, inline = true)
+      .addField(`Wallet:`, `$${Number(money).toLocaleString('en')}`, inline = true)
+      .addField( `Bank:`, `$${Number(bank).toLocaleString('en')}/5,000,000`, inline = true)
       .addField(`Support`, '[Support Server](https://discord.gg/bzRh5Mz)')
       .setColor("RANDOM")
       message.channel.send(embed)
@@ -24,14 +24,14 @@ exports.run = async (client, message, args) => {
       } else {
         let embed = new Discord.RichEmbed()
         .setAuthor(`${member.user.tag}'s bal`)
-        .addField(`Wallet:`, `$${money}.`, inline = true)
-        .addField( 'Bank:', `$${bank}/5,000,000`, inline = true)
+        .addField(`Wallet:`, `$${Number(money).toLocaleString('en')}.`, inline = true)
+        .addField( 'Bank:', `$${Number(bank).toLocaleString('en')}/5,000,000`, inline = true)
         .addField(`Support`, '[Support Server](https://discord.gg/bzRh5Mz)')
         .setColor("RANDOM")
         message.channel.send(embed)
         return message.channel.send("**TIP:** if you need help with something ask us in our Support Server.")
       }
-    
+
       };
    
    exports.conf = {

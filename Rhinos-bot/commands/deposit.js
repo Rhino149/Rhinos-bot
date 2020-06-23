@@ -28,10 +28,11 @@ exports.run = async (client, message, args, config) => {
             if (args[0] > 5000000) 
             return message.channel.send('You cannot deposit this much.')
 	if (args[0] < 1)                                                   return message.channel.send('Must be a whole number.')
+
             if (bank == NaN)
         return client.money.get(key, 'bank')
         else {
-            message.channel.send(`You deposited $${Number(args[0])}.`)
+            message.channel.send(`You deposited $${Number(args[0]).toLocaleString('en')}.`)
             client.money.set(key, (money - Number(args[0])), 'money');
             client.money.set(key, (bank + Number(args[0])), 'bank');
         }

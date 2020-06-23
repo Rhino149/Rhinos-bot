@@ -1,7 +1,11 @@
 const Discord = require('discord.js')
 exports.run = async (client, message, args, level) => { 
   const code = args.join(" ");
-  try {
+ let evalTime;
+
+try {
+	const before = Date.now();
+	evalTime = Date.now() - before;
     if(code) {
         
         const evaled = eval(code, {depth: 0} )
@@ -13,6 +17,7 @@ exports.run = async (client, message, args, level) => {
         .addField("Input", `\`\`\`js\n${code}\n\`\`\``)
         .addField("Output", `\`\`\`js\n${evaled}\n\`\`\``)
         .setTimestamp(new Date ())
+	.setFooter(`evaluated in ${evalTime}ms`)
         message.channel.send(embed)
     }
 } catch(err) {
@@ -23,6 +28,7 @@ exports.run = async (client, message, args, level) => {
   .addField("Input", `\`\`\`${code}\`\`\``)
   .addField("Output", `\`\`\`js\n${err}\n\`\`\``)
   .setTimestamp(new Date ())
+.setFooter(`evaluated in ${evalTime}ms`)
   message.channel.send(embed)
     /*  message.channel.send({embed: {
       color: 15158332,

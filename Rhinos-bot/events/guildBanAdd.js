@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 module.exports = (client, guild, user, message) => {
-  const settings = client.getSettings("message.guild");
+  const settings = client.getSettings("message.guild.id");
 
   if (settings.logMessageUpdates == 'true') {
 	if (settings.modLogChannel && message.guild.channels.find(c => c.name == settings.modLogChannel)) {

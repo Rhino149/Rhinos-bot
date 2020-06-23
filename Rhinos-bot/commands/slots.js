@@ -51,7 +51,7 @@ exports.run = async (client, message, args) => {
        .setFooter('You won!', icon)
        .setTitle(':slot_machine: Slots :slot_machine:')
        .addField('Result:', `| ${slots[result1] } | ${slots[result2] } | ${slots[result3]} |`)
-       .addField('Amount Won: ', `$${Number(args[0])}`, inline = false)
+       .addField('Amount Won: ', `$${Number(args[0]).toLocaleString('en')}`, inline = false)
        .setColor(0xF4E842)
     client.money.set(key, (money + Number(args[0])), 'money')
     message.channel.send(embed);
@@ -62,7 +62,7 @@ exports.run = async (client, message, args) => {
        .setFooter('You won!', icon)
        .setTitle(':slot_machine: Slots :slot_machine:')
        .addField('Result:', `| ${slots[result1] } | ${slots[result2] } | ${slots[result3]} |`)
-       .addField('Amount: ', `$${Number(args[0])}`)
+       .addField('Amount Won: ', `$${Number(args[0]).toLocaleString('en')}`)
        .setColor(0xF4E842)
     client.money.set(key, (money + Number(args[0])), 'money')
     message.channel.send(embed);
@@ -74,7 +74,7 @@ exports.run = async (client, message, args) => {
          .setFooter('You won!', icon)
          .setTitle(':slot_machine: Slots :slot_machine:')
          .addField('Result:', `| ${slots[result1] } | ${slots[result2] } | ${slots[result3]} |`)
-         .addField('Amount:', ` $${Number(args[0])}`)
+         .addField('Amount Won:', ` $${Number(args[0]).toLocaleString('en')}`)
          .setColor(0xF4E842)
       client.money.set(key, (money + Number(args[0])), 'money')
       message.channel.send(embed);
@@ -85,7 +85,7 @@ exports.run = async (client, message, args) => {
          .setFooter('You won!', icon)
          .setTitle(':slot_machine: Slots :slot_machine:')
          .addField('Result:', `| ${slots[result1] } | ${slots[result2] } | ${slots[result3]} |`)
-         .addField('Amount:', ` $${Number(args[0])}`)
+         .addField('Amount Won:', ` $${Number(args[0]).toLocaleString('en')}`)
          .setColor(0xF4E842)
       client.money.set(key, (money + Number(args[0])), 'money')
       message.channel.send(embed);

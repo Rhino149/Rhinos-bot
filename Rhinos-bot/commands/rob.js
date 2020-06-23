@@ -11,9 +11,11 @@ exports.run = async (client, message, args, guild) => {
     }
     
     const member = message.mentions.members.first() || message.guild.members.get(args[0])
+
 	if (message.mentions.members.size < 1) return message.channel.send('Sorry, you forgot to mention somebody.')
 	if (!member) return message.channel.send('Sorry, you forgot to mention somebody.')
     if (member.user.id === message.author.id) return message.channel.send('You cannot rob yourself.')
+	if (member.user.bot === true) return message.channel.send("Bots don't deserved to be robbed")
     client.money.ensure(`${member.user.id}`, {
       member: member.user.id,
       money: 0,

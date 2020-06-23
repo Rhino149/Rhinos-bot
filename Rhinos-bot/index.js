@@ -17,7 +17,7 @@ const Enmap = require("enmap");
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`,
 // or `bot.something`, this is what we're refering to. Your client.
-const client = new Discord.Client({ partials: ['MESSAGE'] });
+const client = new Discord.Client({ partials: ['MESSAGE', 'GUILD'] });
 
 // Here we load the config file that contains our token and our prefix values.
 client.config = require("./config.js");
@@ -122,9 +122,8 @@ for (let i = 0; i < client.config.permLevels.length; i++) {
     // Bind the client to any event, before the existing arguments
     // provided by the discord.js event. 
     // This line is awesome by the way. Just sayin'.
-    client.on(eventName, event.bind(null, client));
+ client.on(eventName, event.bind(null, client))
   });
-
   // Generate a cache of client permissions for pretty perm names in commands.
   client.levelCache = {};
   for (let i = 0; i < client.config.permLevels.length; i++) {

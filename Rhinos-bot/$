@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 exports.run = async (client, message, args) => {
-  const prefix = client.getSettings(message.guild.id).prefix
+  const prefix = message.guild === null ? r! : client.getSettings(message.guild.id).prefix
   
   const embed = new Discord.RichEmbed()
     .setTitle('🛒 Shop')
