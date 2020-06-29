@@ -1,4 +1,5 @@
 const ms = require('ms')
+const humanizeDuration = require('humanize-duration');
 exports.run = async (client, message, args) => {
   const prefix = message.guild === null ? 'r!' : client.getSettings(message.guild.id).prefix
 
@@ -12,8 +13,8 @@ exports.run = async (client, message, args) => {
   
   var today = new Date();
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  
-  if (cooldown === date) return message.channel.send(`You have already collected your daily bonus today!`)
+  const remaining = (today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1))
+  if (cooldown === date) return message.channel.send(`You have already collected your daily bonus today! Wait until ${remaining}`)
   
   client.cooldown.set(`${message.author.id}`, date, 'dailybonus') // Activate 24 hour cooldown
   

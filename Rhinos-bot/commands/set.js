@@ -74,7 +74,7 @@ exports.run = async (client, message, [action, key, ...value], level) => { // es
     let embed = new Discord.RichEmbed()
         .setTitle('⚙️ Server Settings')
         .setColor("RANDOM")
-      Object.keys(client.getSettings(message.guild.id)).forEach((setting) => embed = embed.addField(setting, settings[setting], true))
+      Object.keys(client.getSettings(message.guild.id)).forEach((setting) => embed = embed.addField(`${setting}`, `${settings[setting]}`, true))
   message.channel.send(embed)
     }
 };

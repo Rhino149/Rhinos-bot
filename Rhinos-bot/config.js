@@ -10,10 +10,11 @@ const config = {
 
   // Your Bot's Token. Available on https://discordapp.com/developers/applications/me
   "token": "NjM2MzExNjY3MjM5NTUxMDA2.Xuhg3A.XYLOgElf-cIyo5I2uHKyjG_CIFk",
+
   "dashboard" : {
     "oauthSecret": "DbdHjfP5st2ZGESsoQH0u6KBi6W_ckun",
     "callbackURL": `http://localhost:9559/callback`,
-    "sessionSecret": "Rhinos_For_Life",
+    "sessionSecret": "rhino life",
     "domain": "localhost",
     "port": 9559
   },

@@ -1,7 +1,7 @@
 module.exports = async client => {
   // Log that the bot is online.
   await client.wait(1000);
-
+	
   // This loop ensures that client.application always contains up to date data
   // about the app's status. This includes whether the bot is public or not,
   // its description, owner(s), etc. Used for the dashboard amongs other things.
@@ -25,7 +25,6 @@ module.exports = async client => {
   require("../util/dashboard")(client);  
 
   client.logger.log(`${client.user.tag}, ready to serve ${client.users.size} users in ${client.guilds.size} servers.`, "ready");
-
 
 /*
 (`${client.settings.get("default").prefix}help and in ${client.guilds.size} guilds, With ${client.users.size} Users`, 15000, (`Watching Rhino-Bot support!`, {type: "PLAYING"}))

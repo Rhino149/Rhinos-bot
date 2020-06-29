@@ -48,7 +48,11 @@ module.exports = (client) => {
     "welcomeMessage": "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D",
     "welcomeEnabled": "false",
     "messageLogChannel": "message-logs",
-    "messageLogging": "false"
+    "messageLogging": "false",
+    "memberLogChannel": "member-log",
+    "memberLogging": "false",
+    "serverLogChannel": "server-logs",
+    "serverLogging": "false"
   };
 
   // getSettings merges the client defaults with the guild settings. guild settings in

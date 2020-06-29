@@ -9,13 +9,13 @@ try {
     if(code) {
         
         const evaled = eval(code, {depth: 0} )
-        
+        const clean = await client.clean(client, evaled);
         let embed = new Discord.RichEmbed()
         .setAuthor(message.author.username)
         .setThumbnail(message.author.avatarURL)
         .setColor(3066993)
         .addField("Input", `\`\`\`js\n${code}\n\`\`\``)
-        .addField("Output", `\`\`\`js\n${evaled}\n\`\`\``)
+        .addField("Output", `\`\`\`js\n${clean}\n\`\`\``)
         .setTimestamp(new Date ())
 	.setFooter(`evaluated in ${evalTime}ms`)
         message.channel.send(embed)

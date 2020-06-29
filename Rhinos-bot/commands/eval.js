@@ -6,12 +6,23 @@
 
 // However it's, like, super ultra useful for troubleshooting and doing stuff
 // you don't want to put in a command.
+const http = require('http')
+const hastebin = require("hastebin-gen")
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
   const code = args.join(" ");
   try {
     const evaled = eval(code);
     const clean = await client.clean(client, evaled);
 
+	  if (clean.length >= 2000) {
+	  hastebin(clean, { extension: "txt" }).then(haste => {
+    // Logs the created hastebin url to the console
+	message.channel.send(haste); // https://hastebin.com/someid.txt
+}).catch(error => {
+    // Handle error
+    console.error(error);
+})
+}
     message.channel.send(`\`\`\`js\n${clean}\n\`\`\``);
   } catch (err) {
     message.channel.send(`\`ERROR\` \`\`\`xl\n${await client.clean(client, err)}\n\`\`\``);

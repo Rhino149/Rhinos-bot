@@ -38,7 +38,8 @@ exports.run = async (client, message, args) => {
      enabled: true,
      aliases: ['money', 'balance', '$', 'wallet'],
      guildOnly: true,
-     permLevel: 'User'
+     permLevel: 'User',
+     cooldown: 5000
    }
    
    exports.help = {
