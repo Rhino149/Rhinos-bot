@@ -6,11 +6,11 @@ exports.run = (client, message, args, level) => {
   try {
     if (!args[0]) {
       const embed = new Discord.RichEmbed()
-				.setTitle('Help')
-				.setColor("RANDOM")
-				.setThumbnail(client.user.avatarURL)
-				.addField('Commands', `Commands can be found by typing \`${prefix}commands\`.`)
-				.addField('Want to invite me to your Discord?', '[Click here to invite me to your server.](https://discordapp.com/oauth2/authorize?client_id=636311667239551006&scope=bot&permissions=2146958847)')
+	.setTitle('Help')
+	.setColor("RANDOM")
+	.setThumbnail(client.user.avatarURL)
+	.addField('Commands', `Commands can be found by typing \`${prefix}commands\`.`)
+	.addField('Want to invite me to your Discord?', '[Click here to invite me to your server.](https://discordapp.com/oauth2/authorize?client_id=636311667239551006&scope=bot&permissions=2146958847)')
         .addField('Need more assistance?', '[Click here to join the official Rhino Bot support server](https://discord.gg/bzRh5Mz)')
       message.channel.send(embed)
     } else {
@@ -37,7 +37,6 @@ exports.run = (client, message, args, level) => {
         sorted.forEach(c => {
           const cat = c.help.category.toLowerCase()
           if (cat == args[0].toLowerCase()) {
-            if (level < client.levelCache[c.conf.permLevel]) return
             output += '`' + c.help.name + '` '
           }
         })

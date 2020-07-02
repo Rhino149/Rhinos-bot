@@ -11,9 +11,9 @@ exports.run = async (client, message, args) => {
   const cooldown = client.cooldown.get(message.author.id, 'weeklybonus')
   
   var today = new Date();
-  var date = today.getFullYear()+'-'+(today.getMonth()+7);
-  
-  if (cooldown === date) return message.channel.send(`You have already collected your weekly bonus this week!`)
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+7);
+  const remaining = (date)
+  if (cooldown === date) return message.channel.send(`You have already collected your weekly bonus this week! Come back next week on ${remaining}`)
   
   client.cooldown.set(`${message.author.id}`, date, 'weeklybonus') // Activate 1 week cooldown
   

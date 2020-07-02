@@ -3,7 +3,7 @@ const config = {
   "ownerID": "338129130237198336",
 
   // Bot Admins, level 9 by default. Array of user ID strings.
-  "admins": [],
+  "admins": ["621516199376977932"],
 
   // Bot Support, level 8 by default. Array of user ID strings
   "support": [],
@@ -15,7 +15,7 @@ const config = {
     "oauthSecret": "DbdHjfP5st2ZGESsoQH0u6KBi6W_ckun",
     "callbackURL": `http://localhost:9559/callback`,
     "sessionSecret": "rhino life",
-    "domain": "localhost",
+    "domain": "localhost:9559",
     "port": 9559
   },
 

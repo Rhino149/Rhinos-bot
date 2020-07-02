@@ -1,24 +1,21 @@
 const Discord = require('discord.js')
-module.exports = async (client, message, guild, member) => {
+module.exports = async (client, messages, message, guild, member) => {
 
-  const settings = client.getSettings(message.guild);
+  const settings = client.getSettings(messages.guild);
   if (settings.messageLogging !== "true") return;
   if (guild === null) return
-  if (message.author.bot === true) return
-  if (settings.messageLogChannel && message.guild.channels.find(c => c.name == settings.messageLogChannel)) {
+  if (settings.messageLogChannel && messages.guild.channels.find(c => c.name == settings.messageLogChannel)) {
 
   let embed = new Discord.RichEmbed()
-  .setAuthor(message.author.tag, message.author.avatarURL)
-  .setThumbnail(message.author.avatarURL)
   .setColor("RANDOM")
-  .setTitle(`Message was sent in #${message.channel.name}`) 
-  .setDescription(`${message.content}`)
+  .setTitle(`Purged messages in #${messages.channel.name}`) 
+  .setDescription(`${messages}`)
   .setTimestamp(Date.now() - 5000)
-  .setFooter(message.author.id)
+  .setFooter("I wonder if someones trying to hide something")
   
   
 
-  message.guild.channels.find(c => c.name === settings.messageLogChannel).send(embed).catch(console.error);
+  messages.guild.channels.find(c => c.name === settings.messageLogChannel).send(embed).catch(console.error);
   }
 }
 
@@ -43,3 +40,4 @@ client.on('messageDelete', async (message) => {
   }
 })
 */
+

@@ -37,7 +37,7 @@ const myCommands = message.guild ? client.commands.filter(cmd => client.levelCac
       const embed = new Discord.RichEmbed()
 	  .setTitle('Commands')
 	  .setColor("RANDOM")
-	  .addField(`Type ${prefix}commands <category> to view all commands in that category`, 'Valid categories:\ `Moderation`, `Economy`, `System`, `Info`, `Fun`, `Developer`, `Being worked on/Broken` ')
+	  .addField(`Type ${prefix}commands <category> to view all commands in that category`, 'Valid categories:\ `Moderation`, `Economy`, `System`, `Info`, `Fun`, `Developer` ')
 
       message.channel.send(embed)
     } else {
@@ -63,8 +63,7 @@ const myCommands = message.guild ? client.commands.filter(cmd => client.levelCac
         sorted.forEach(c => {
           const cat = c.help.category.toLowerCase()
           if (cat == args[0].toLowerCase()) {
-            if (level < client.levelCache[c.conf.permLevel]) return
-            output += '`' + c.help.name + '`, '
+	output += '`' + c.help.name + '`, '
           }
         })
 

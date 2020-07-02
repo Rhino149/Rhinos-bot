@@ -5,7 +5,7 @@ exports.run = async (client, message, args, level) => {
 
 try {
 	const before = Date.now();
-	evalTime = Date.now() - before;
+	evalTime = Date.now() - before
     if(code) {
         
         const evaled = eval(code, {depth: 0} )
@@ -17,7 +17,7 @@ try {
         .addField("Input", `\`\`\`js\n${code}\n\`\`\``)
         .addField("Output", `\`\`\`js\n${clean}\n\`\`\``)
         .setTimestamp(new Date ())
-	.setFooter(`evaluated in ${evalTime}ms`)
+	.setFooter(`evaluated in ${Number(evalTime).toLocaleString('en')}ms`)
         message.channel.send(embed)
     }
 } catch(err) {

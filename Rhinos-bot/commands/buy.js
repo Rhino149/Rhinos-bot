@@ -55,21 +55,21 @@ exports.run = async (client, message, args, level) => {
     
     if (args[0] === 'wedding' || args[0] === 'ring' || args[0] === 'rings') {
       const rings = args[0] > 1 ? 'wedding rings' : 'wedding ring'
-      buyItem(money, 1300, args[1], rings)
+      buyItem(money, 15000, args[1], rings)
     } else
     
     if (args[0] === 'food' || args[0] === 'petfood') {
       const food = args[0] > 1 ? 'cans of pet food' : 'can of pet food'
-      buyItem(money, 50, args[1], food)
+      buyItem(money, 75, args[1], food)
     } else
     
     if (args[0] === 'seed' || args[0] === 'seeds') {
       const seeds = args[0] > 1 ? 'seeds' : 'seed'
-      buyItem(money, 5, args[1], seeds)
+      buyItem(money, 15, args[1], seeds)
     } else
     if (args[0] === 'stone' || args[0] === 'stones') {
       const stones = args[0] > 1 ? 'stones' : 'stone'
-      buyItem(money, 1, args[1], stones)
+      buyItem(money, 3, args[1], stones)
   } else
   if (args[0] === 'car' || args[0] === 'cars') {
     const cars = args[0] > 1 ? 'cars' : 'car'
