@@ -5,6 +5,7 @@ module.exports = async (client, message, guild, member) => {
   if (settings.messageLogging !== "true") return;
   if (guild === null) return
   if (message.author.bot === true) return
+  if (message.size > 1) return
   if (settings.messageLogChannel && message.guild.channels.find(c => c.name == settings.messageLogChannel)) {
 
   let embed = new Discord.RichEmbed()

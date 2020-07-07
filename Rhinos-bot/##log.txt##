@@ -1,6 +1,0 @@
-r!deval const fs = require('fs');
- if(message.content.toLowerCase().includes('custom field:'))
-        message.channel.send("Custom field detected");
-fs.appendFile('log.txt', message.content, (err) => {
-  if (err) throw err;
-				  

@@ -16,7 +16,7 @@ const Enmap = require("enmap");
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`,
 // or `bot.something`, this is what we're refering to. Your client.
-const client = new Discord.Client({ partials: ['MESSAGE', 'GUILD'] });
+const client = new Discord.Client({ partials: ['MESSAGE'] });
 // Here we load the config file that contains our token and our prefix values.
 client.config = require("./config.js");
 // client.config.token contains the bot's token
@@ -47,16 +47,6 @@ client.settings = new Enmap({ name: "settings", cloneLevel: "deep", fetchAll: fa
 
 
 const init = async () => {
-const DBLWebhook = require("./webhook.js")
-const DBL = require("dblapi.js");
-const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjMxMTY2NzIzOTU1MTAwNiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTkxMDI3NzkxfQ.p-3Gr55LmVqaPcAaDOPuy0L_bUIvYXRne_c4tPn1NME', client);
-dbl.on('posted', () => {
-  console.log('Server count posted!');
-})
-
-dbl.on('error', e => {
- console.log(`Oops! ${e}`);
-})
 
 client.starttime = new Date().getTime()
 client.points = new Enmap({ name: 'points' })
@@ -84,6 +74,44 @@ client.liusers = new Discord.Collection()
 client.cooldowns = new Discord.Collection()
 client.music = {}
 client.levelCache = {}
+
+const express = require('express');
+const http = require('http');
+const app = express();
+const server = http.createServer(app);
+const DBL = require("dblapi.js");
+const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjMxMTY2NzIzOTU1MTAwNiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTkxMDI3NzkxfQ.p-3Gr55LmVqaPcAaDOPuy0L_bUIvYXRne_c4tPn1NME', { webhookAuth: 'rhinos', webhookServer: server }, client);
+dbl.on('posted', () => {
+console.log('Server count posted!');
+})
+dbl.on('error', e => {
+console.log(`Oops! ${e}`);
+})
+app.get('/dblwebhook', (req, res) => {
+console.log("Ping received!");
+});
+dbl.webhook.on('ready', hook => {
+console.log(`Webhook running with the path ${hook.path}`);
+});
+dbl.webhook.on('vote', vote => {
+client.money.ensure(`${vote.user}`, {
+  member: vote.user,
+  money: 0
+})
+const money = client.money.get(vote.user, 'money')
+  client.money.set(`${vote.user}`, money + 20000, 'money')
+console.log(`User with ID ${vote.user} just voted!`);
+client.users.get(vote.user).send("Thank You for voting you can vote every 12 hours!");
+const voteEmbed = new Discord.RichEmbed()
+.setTitle("A user just voted!")
+.setDescription(`<@${vote.user}> Voted at [Top.gg](https://top.gg/bot/636311667239551006/vote)`)
+.setColor("RANDOM")
+client.channels.get("714714216141029458").send(voteEmbed)
+});
+
+server.listen(5000, () => {
+console.log('Listening');
+});
 
 process.env.SESSION_SECRET = ''
 for (let i = 0; i <= 1500; i++) {

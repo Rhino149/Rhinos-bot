@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 module.exports = (client, guild, user, message) => {
-  const settings = client.getSettings("message.guild.id");
+  const settings = client.getSettings("message.guild");
 
   if (settings.logMessageUpdates == 'true') {
 	if (settings.modLogChannel && message.guild.channels.find(c => c.name == settings.modLogChannel)) {
@@ -13,7 +13,7 @@ module.exports = (client, guild, user, message) => {
         .setTitle('🔨 Member banned')
         .setColor("FF0000")
         .setDescription(`**Total member count:** \`${guild.memberCount}\`\n<@${user.id}> was banned from the Discord.`)
-        .setThumbnail(user.displayAvatarURL)
+        .setThumbnail(messages.displayAvatarURL)
         .setTimestamp()
 
         message.guild.channels.find(c => c.name === settings.modLogChannel).send(embed).catch(console.error);

@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-module.exports = async (client, messages, message, guild, member) => {
+module.exports = async (client, messages, message, guild) => {
 
   const settings = client.getSettings(messages.guild);
   if (settings.messageLogging !== "true") return;
@@ -9,7 +9,7 @@ module.exports = async (client, messages, message, guild, member) => {
   let embed = new Discord.RichEmbed()
   .setColor("RANDOM")
   .setTitle(`Purged messages in #${messages.channel.name}`) 
-  .setDescription(`${messages}`)
+  .setDescription(`${messages.content}`)
   .setTimestamp(Date.now() - 5000)
   .setFooter("I wonder if someones trying to hide something")
   
@@ -18,7 +18,6 @@ module.exports = async (client, messages, message, guild, member) => {
   messages.guild.channels.find(c => c.name === settings.messageLogChannel).send(embed).catch(console.error);
   }
 }
-
 /*
 client.on('messageDelete', async (message) => {
   if (settings.messageLogging !== "true") return;

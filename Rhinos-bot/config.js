@@ -15,7 +15,7 @@ const config = {
     "oauthSecret": "DbdHjfP5st2ZGESsoQH0u6KBi6W_ckun",
     "callbackURL": `http://localhost:9559/callback`,
     "sessionSecret": "rhino life",
-    "domain": "localhost:9559",
+    "domain": "localhost",
     "port": 9559
   },
 
