@@ -59,7 +59,7 @@ const myCommands = message.guild ? client.commands.filter(cmd => client.levelCac
         const currentCategory = ''
         let output = ''
 
-        const sorted = client.commands.array().sort((p, c) => p.help.category > c.help.category ? 1 : p.help.name > c.help.name && p.help.category === c.help.category ? 1 : +1)
+        const sorted = client.commands.array().sort((p, c) => p.help.category > c.help.category ? 1 : p.help.name > c.help.name && p.help.category === c.help.category ? 1 : -1)
         sorted.forEach(c => {
           const cat = c.help.category.toLowerCase()
           if (cat == args[0].toLowerCase()) {

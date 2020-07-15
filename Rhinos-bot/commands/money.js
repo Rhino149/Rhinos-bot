@@ -15,8 +15,8 @@ exports.run = async (client, message, args) => {
         };
       let embed = new Discord.RichEmbed()
       .setAuthor(`${member.user.tag}'s bal`)
-      .addField(`Wallet:`, `$${Number(money).toLocaleString('en')}`, inline = true)
-      .addField( `Bank:`, `$${Number(bank).toLocaleString('en')}/5,000,000`, inline = true)
+      .addField(`Wallet:`, `$${Number(money).toLocaleString()}`, inline = true)
+      .addField( `Bank:`, `$${Number(bank).toLocaleString()}/5,000,000`, inline = true)
       .addField(`Support`, '[Support Server](https://discord.gg/bzRh5Mz)')
       .setColor("RANDOM")
       message.channel.send(embed)
@@ -24,8 +24,8 @@ exports.run = async (client, message, args) => {
       } else {
         let embed = new Discord.RichEmbed()
         .setAuthor(`${member.user.tag}'s bal`)
-        .addField(`Wallet:`, `$${Number(money).toLocaleString('en')}.`, inline = true)
-        .addField( 'Bank:', `$${Number(bank).toLocaleString('en')}/5,000,000`, inline = true)
+        .addField(`Wallet:`, `$${Number(money).toLocaleString()}.`, inline = true)
+        .addField( 'Bank:', `$${Number(bank).toLocaleString()}/5,000,000`, inline = true)
         .addField(`Support`, '[Support Server](https://discord.gg/bzRh5Mz)')
         .setColor("RANDOM")
         message.channel.send(embed)
@@ -38,8 +38,7 @@ exports.run = async (client, message, args) => {
      enabled: true,
      aliases: ['money', 'balance', '$', 'wallet'],
      guildOnly: true,
-     permLevel: 'User',
-     cooldown: 5000
+     permLevel: 'User'
    }
    
    exports.help = {

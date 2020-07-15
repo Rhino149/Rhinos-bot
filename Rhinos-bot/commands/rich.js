@@ -1,17 +1,47 @@
 const Discord = require('discord.js');
-exports.run = async (client, message, args) => {
-  const member = message.mentions.members.first() ? message.mentions.members.first() : message.member
-   
-     client.money.ensure(`${member.id}`, {
-       member: member.id,
-       money: 0
-     })
+exports.run = async (client, message, member, user, guild, args) => {
 
-     const money = client.money.get(member.id, 'money')
-     const target = message.mentions.users.first() || message.author; 
-     let currency = money
-     return message.channel.send(.sort((a, b) => b.money - a.money).filter(user => client.users.cache.has(user.user_id)).first(10).map((user, position) => `(${position + 1}) ${(client.users.cache.get(user.user_id).tag)}: ${client.user.money}💰`).join('\n'), { code: asciidoc } );
-  };
+    const emojis = [':first_place:', ':second_place:', ':third_place:'];
+/*const members = message.guild.id || message.author.id
+ client.money.ensure(`${message.guild.id}-${message.author.id}`, {
+	 user: message.author.id,
+	 guild: message.guild.id,
+	 money: 0
+    });
+ const money = client.money.get(`${message.guild.id}-${message.author.id}`, 'money');
+
+  // Rest of message handler
+
+	//Get a filtered list (for this guild only), and convert to an array while we're at it.
+  const filtered1 = client.money.filter( m => `${m.money}` > 0 ).array()
+  // Sort it to get the top results... well... at the top. Y'know.
+  const filtered2 = filtered1.filter(p => p.guild === message.guild.d)
+*/
+if (message.guild) {
+    const filtered = client.money
+	.filter(m => m.money > 0)
+	.filter(u => u.user >= client.users.has(message.author))
+      .array();
+  const sorted = filtered.sort(function(a, b) {
+	  return b.money - a.money;
+  });
+	const top10 = sorted.slice(0, 5);
+    
+  // Now shake it and show it! (as a nice embed, too!)
+  const embed = new Discord.RichEmbed() 
+    .setTitle("Leaderboard")
+    .setAuthor(client.user.username, client.user.avatarURL)
+    .setColor(0x00AE86)
+    .setDescription("Top 5 richest people in the server")
+	top10.forEach((data, index) => {
+	const money = client.money.get(data.user, 'money')
+    embed.addField("[#**" + (index + 1) + "**] " + client.users.get(data.user).tag, ` They have $${money.toLocaleString()} money.`)
+	
+  });
+  
+  return message.channel.send(embed);
+}
+}
   exports.conf = {
     enabled: true,
     aliases: ["lb"],
@@ -25,4 +55,4 @@ exports.run = async (client, message, args) => {
     description: 'See the rich.',
     usage: 'rich'
   };
-  
+
