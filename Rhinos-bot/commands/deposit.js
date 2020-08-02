@@ -1,4 +1,5 @@
-exports.run = async (client, message, args, config) => {	
+exports.run = async (client, message, args, config) => {
+	
 	if (!args[0]) return message.channel.send('You need to specify an amount to deposit.')
   const key = message.author.id;
            client.money.ensure(`${key}`, {
@@ -18,25 +19,37 @@ exports.run = async (client, message, args, config) => {
 	return message.channel.send('Invalid amount.')
 	}
 }
-        if (money < args[0])
+const amount = Number(args[0])
+        if (money < amount)
         return message.channel.send('You do not have enough money to deposit.')
         if (bank >= 5000000)
         return message.channel.send("Sorry but you hit max bank size.")
 
-        if (args[0] <= 0) 
+        if (amount <= 0) 
             return message.channel.send('You cannot deposit nothing.')
-            if (args[0] > 5000000) 
+            if (amount > 5000000) 
             return message.channel.send('You cannot deposit this much.')
-	if (args[0] < 1)                                                   return message.channel.send('Must be a whole number.')
+	if (amount < 1)
+	return message.channel.send('Must be a whole number.')
 
             if (bank == NaN)
         return client.money.get(key, 'bank')
         else {
-            message.channel.send(`You deposited $${Number(args[0]).toLocaleString('en')}.`)
-            client.money.set(key, (money - Number(args[0])), 'money');
-            client.money.set(key, (bank + Number(args[0])), 'bank');
-        }
-    }
+if (amount && amount <= money) {
+	if (amount + bank > 5000000) {
+        return message.channel.send(`You can only hold ${Number(5e6).toLocaleString()} In your bank will change in the future`)
+}
+        if (amount < 1 || !Number.isInteger(Number(amount))) {
+return message.channel.send('Needs to be a whole number greater than 0')
+}
+            message.channel.send(`You deposited $${amount.toLocaleString('en')}.`)
+            client.money.set(key, (money - amount), 'money');
+            client.money.set(key, (bank + amount), 'bank');
+        } else {
+	return message.channel.send(`You cant deposit more than you have out in your pocket: $${Number(money).toLocaleString}`)
+	}
+}
+}
         exports.conf = {
             enabled: true,
             aliases: ["dep"],

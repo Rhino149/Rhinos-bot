@@ -1,7 +1,10 @@
 module.exports = async client => {
-  // Log that the bot is online.
+  // Why await here? Because the ready event isn't actually ready, sometimes
+  // guild information will come in *after* ready. 1s is plenty, generally,
+  // for all of them to be loaded.
+  // NOTE: client.wait and client.log are added by ./util/functions.js !
   await client.wait(1000);
-	
+
   // This loop ensures that client.application always contains up to date data
   // about the app's status. This includes whether the bot is public or not,
   // its description, owner(s), etc. Used for the dashboard amongs other things.
@@ -24,19 +27,12 @@ module.exports = async client => {
   // may be missing from the dashboard. 
   require("../util/dashboard")(client);  
 
+  // Set the game as the default help command + guild count.
+  // NOTE: This is also set in the guildCreate and guildDelete events!
+  setInterval(function() {
+client.user.setActivity(`My prefix is ${client.settings.get("default").prefix} | I'm in ${client.guilds.size} servers`, {type: "WATCHING"})
+  }, 10000)
+  // Log that we're ready to serve, so we know the bot accepts commands.
   client.logger.log(`${client.user.tag}, ready to serve ${client.users.size} users in ${client.guilds.size} servers.`, "ready");
-
-/*
-(`${client.settings.get("default").prefix}help and in ${client.guilds.size} guilds, With ${client.users.size} Users`, 15000, (`Watching Rhino-Bot support!`, {type: "PLAYING"}))
-*/
-let activities = [
- "Rhino-Bot support!",
-"I am a growing Economy bot Invite me!",
-"To invite me do r!invite in server with the bot!"], i = 0;
-  // Make the bot "play the game" which is the help command with default prefix.
-  setInterval(function() { 
-  
-    client.user.setActivity(`My prefix is ${client.settings.get("default").prefix} | I'm in ${client.guilds.size} servers that are using me! | ${activities[i++ % activities.length]}`, {type: "WATCHING"})
-  
-}, 10000)
 };
+

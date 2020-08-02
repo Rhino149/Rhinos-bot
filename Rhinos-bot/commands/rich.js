@@ -18,32 +18,23 @@ exports.run = async (client, message, member, user, guild, args) => {
   const filtered2 = filtered1.filter(p => p.guild === message.guild.d)
 */
 if (message.guild) {
-    const filtered = client.money
-	.filter(m => m.money > 0)
-	.filter(u => u.user >= client.users.has(message.author))
-      .array();
-  const sorted = filtered.sort(function(a, b) {
-	  return b.money - a.money;
-  });
-	const top10 = sorted.slice(0, 5);
-    
-  // Now shake it and show it! (as a nice embed, too!)
-  const embed = new Discord.RichEmbed() 
+const list = client.guilds.get(message.guild.id)
+const lb = client.money.array().sort((a, b) => b.money - a.money)
+.filter(u => list.members.has(u.member))
+.filter(m => m.money > 0).splice(0, 5)
+
+const embed = new Discord.RichEmbed() 
     .setTitle("Leaderboard")
     .setAuthor(client.user.username, client.user.avatarURL)
     .setColor(0x00AE86)
     .setDescription("Top 5 richest people in the server")
-	top10.forEach((data, index) => {
-	const money = client.money.get(data.user, 'money')
-    embed.addField("[#**" + (index + 1) + "**] " + client.users.get(data.user).tag, ` They have $${money.toLocaleString()} money.`)
-	
-  });
-  
-  return message.channel.send(embed);
+lb.map((user, position) => embed.addField("[#**" + (position + 1) + "**] " + client.users.get(user.member).tag, ` They have $${client.money.get(user.member, 'money').toLocaleString()} <:rhino_coin:734247475207995423>`)
+  )
+message.channel.send(embed);
 }
 }
   exports.conf = {
-    enabled: true,
+    enabled: false,
     aliases: ["lb"],
     guildOnly: true,
     permLevel: 'User'

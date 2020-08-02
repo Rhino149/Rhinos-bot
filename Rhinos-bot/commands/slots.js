@@ -11,8 +11,6 @@ exports.run = async (client, message, args) => {
     return message.channel.send(`You have to wait ${remaining} before you can use slots again`).catch(console.error);
   }
 
-  cooldowns.set(message.author.id, Date.now() + 5000);
-  setTimeout(() => cooldowns.delete(message.author.id), 5000);
   const key = message.author.id;
 
   client.money.ensure(key, {
@@ -38,7 +36,12 @@ exports.run = async (client, message, args) => {
       return message.channel.send('You cannot slot less than $50 and cannot slot more than $50000.');
       if (money >= 2000000)
       return message.channel.send('You are too rich to use slots.')
-
+if (args[0] < 1 || !Number.isInteger(Number(args[0]))) {
+return message.channel.send('Needs to be a whole number greater than 0')
+}
+else {
+cooldowns.set(message.author.id, Date.now() + 5000)
+setTimeout(() => cooldowns.delete(message.author.id), 5000);
   let slots = [":one:", ":two:", ":three:", ":four:", ":five:"];
   let result1 = Math.floor((Math.random() * slots.length));
   let result2 = Math.floor((Math.random() * slots.length));
@@ -101,7 +104,7 @@ exports.run = async (client, message, args) => {
   message.channel.send(embed);
   return;
 }
-  
+} 
 }
     exports.conf = {
         enabled: true,

@@ -14,10 +14,10 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     const evaled = eval(code);
     const clean = await client.clean(client, evaled);
 
-	  if (clean.length >= 2000) {
-	  hastebin(clean, { extension: "txt" }).then(haste => {
+      if (clean.length >= 2000) {
+      hastebin(clean, { extension: "txt" }).then(haste => {
     // Logs the created hastebin url to the console
-	message.channel.send(haste); // https://hastebin.com/someid.txt
+    message.channel.send(haste); // https://hastebin.com/someid.txt
 }).catch(error => {
     // Handle error
     console.error(error);

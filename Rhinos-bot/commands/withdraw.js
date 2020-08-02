@@ -1,4 +1,4 @@
-exports.run = async (client, message, args, config) => { 
+exports.run = async (client, message, args, config) => {
     if (!args[0]) return message.channel.send('You need to specify an amount to withdraw.')
   const key = message.author.id;
   
@@ -19,20 +19,27 @@ exports.run = async (client, message, args, config) => {
         return message.channel.send('Invalid amount.')
         }
 }
-        if (bank < args[0]) 
+const amount = Number(args[0])
+        if (bank < amount) 
             return message.channel.send('You do not have enough money to withdraw.')
         if (bank <= 0) 
             return message.channel.send('You do not have enough money to withdraw.') 
-            if (args[0] <= 0) 
+            if (amount <= 0) 
             return message.channel.send('You cannot withdraw nothing.')
-	if (args[0] < 1)                                                   return message.channel.send('Must be a whole number.')
+	if (amount < 1)                                                   return message.channel.send('Must be a whole number.')
         if (bank == undefined)
         return message.channel.send('Your bank needs to have more than 0')
          else 
-            message.channel.send(`You withdrawed $${Number(args[0]).toLocaleString('en')}.`)
-            client.money.set(key, (money + Number(args[0])), 'money');
-            client.money.set(key, (bank - Number(args[0])), 'bank');
-
+	if (amount && amount <= bank) {
+        if (amount < 1 || !Number.isInteger(Number(amount))) {
+return message.channel.send('Needs to be a whole number greater than 0')
+}
+            message.channel.send(`You withdrawed $${amount.toLocaleString('en')}.`)
+            client.money.set(key, (money + amount), 'money');
+            client.money.set(key, (bank - amount), 'bank');
+} else {
+return message.channel.send(`You cant withdraw more than you have in your bank`)
+}
          
         }
     

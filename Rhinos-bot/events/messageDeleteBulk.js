@@ -1,23 +1,26 @@
 const Discord = require('discord.js')
 module.exports = async (client, messages, message, guild) => {
 
-  const settings = client.getSettings(messages.guild);
+  const settings = client.getSettings(messages.map(m => m.channel.guild).splice(0, 1))
   if (settings.messageLogging !== "true") return;
   if (guild === null) return
-  if (settings.messageLogChannel && messages.guild.channels.find(c => c.name == settings.messageLogChannel)) {
+  //if (settings.messageLogChannel && messages.guild.channels.find(c => c.name == settings.messageLogChannel)) {
 
   let embed = new Discord.RichEmbed()
   .setColor("RANDOM")
-  .setTitle(`Purged messages in #${messages.channel.name}`) 
-  .setDescription(`${messages.content}`)
+  .setTitle(`${messages.size} messages Purged in #${messages.map(c => c.channel.name).splice(0, 1)}`)
+  .setDescription(messages
+  .filter(b => !b.author.bot)
+  .map(m => `**[${m.author.tag}]:** ${m.content}`)
+  .join('\n'))
   .setTimestamp(Date.now() - 5000)
-  .setFooter("I wonder if someones trying to hide something")
+  .setFooter(`${messages.filter(d => !d.author.bot).size} deleted messages listed`)
   
   
-
-  messages.guild.channels.find(c => c.name === settings.messageLogChannel).send(embed).catch(console.error);
+console.log(messages.content)
+  messages.map(r => r.guild.channels.find(c => c.name === settings.messageLogChannel).send(embed).catch(console.error))
   }
-}
+
 /*
 client.on('messageDelete', async (message) => {
   if (settings.messageLogging !== "true") return;
