@@ -1,11 +1,14 @@
 exports.run = async (client, message, args) => {
-    const member = message.mentions.members.first() || message.channel.guild.members.get(args[0]) || message.member;
+const input = message.content
+const prefix = input.slice(0, 2).split(message.settings.prefix)
+const user = input.split('"').slice(1, 2).join()
+    const member = message.mentions.members.first() || message.channel.guild.members.get(args[0]) || message.channel.guild.members.find(u => u.user.username === user) || message.channel.guild.members.find(u => u.user.tag === user)
     if (!member) return message.channel.send('You must mention someone or give their ID!')
     if (member.user.bot === true) return message.channel.send('Bots cannot receive money!')
-	
+	if (message.author.bot === true) return;
     if (!args[1]) return message.channel.send('You need to specify a number to give.')
-    if (message.mentions.members.first() === message.author) return message.channel.send('You cannot give yourself money.')
-	if (message.author.id === member.user.id) return message.channel.send("Cannot give yourself/No one money")
+   // if (member.user.id  === message.author.id) return message.channel.send('You cannot give yourself money.')
+	if (message.author.id === member.user.id) return message.channel.send("Cannot give yourself")
     if (isNaN(args[1])) return message.channel.send('Invalid amount.')
      if (message.channel.guild.members.find(m => m.id === message.author.id)) {
     client.money.ensure(`${message.author.id}`, {
@@ -21,7 +24,7 @@ exports.run = async (client, message, args) => {
       user: member.user.id,
       money: 0
     })
-  
+  if (args[1] < 1 || !Number.isInteger(Number(args[1]))) {                     return message.channel.send('Needs to be a whole number greater than 0')                                                                }
     const money = client.money.get(`${member.user.id}`, 'money')
     client.money.set(`${member.user.id}`, Number(money) + Number(args[1]), 'money')
     client.money.set(`${message.author.id}`, Number(yourMoney) - Number(args[1]), 'money')

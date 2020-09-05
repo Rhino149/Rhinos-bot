@@ -4,7 +4,6 @@ module.exports = async client => {
   // for all of them to be loaded.
   // NOTE: client.wait and client.log are added by ./util/functions.js !
   await client.wait(1000);
-
   // This loop ensures that client.application always contains up to date data
   // about the app's status. This includes whether the bot is public or not,
   // its description, owner(s), etc. Used for the dashboard amongs other things.

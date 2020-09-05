@@ -12,7 +12,7 @@ exports.conf = {
 
 exports.help = {
   name: "ping",
-  cooldown: 5000,
+  cooldown: 1,
   category: "Info",
   description: "It like... Pings. Then Pongs. And it's not Ping Pong.",
   usage: "ping"

@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-module.exports = async (client, oldMember, newMember, member, guild, channel) => {
+module.exports = async (client, oldMember, newMember, member, guild) => {
 if (oldMember.user.bot === true) return;
 	if (guild === null) return;
 	const settings = client.getSettings(oldMember.guild)

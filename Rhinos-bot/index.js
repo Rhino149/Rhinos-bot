@@ -13,6 +13,7 @@ const Discord = require("discord.js");
 const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 const Enmap = require("enmap");
+
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`,
 // or `bot.something`, this is what we're refering to. Your client.
@@ -24,10 +25,10 @@ client.config = require("./config.js");
 
 // Require our logger
 client.logger = require("./util/logger.js");
-
 // Let's start by getting some useful functions that we'll use throughout
 // the bot, like logs and elevation features.
 require("./util/functions.js")(client);
+
 // Aliases and commands are put in collections where they can be read from,
 // catalogued, listed, etc.
 client.commands = new Enmap();
@@ -72,6 +73,7 @@ client.commands = new Discord.Collection()
 client.aliases = new Discord.Collection()
 client.liusers = new Discord.Collection()
 client.cooldowns = new Discord.Collection()
+client.message = new Discord.Collection()
 client.music = {}
 client.levelCache = {}
 

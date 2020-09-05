@@ -103,8 +103,6 @@ module.exports = (client) => {
       return false;
     }
   };
-
-
   /*
   MESSAGE CLEAN FUNCTION
 

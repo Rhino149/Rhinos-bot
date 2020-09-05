@@ -1,5 +1,6 @@
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
 // Member doesn't have permissions
+const author = message.member
 if (!message.member.hasPermission("ADMINISTRATOR")) {
   return message.reply("You dont have the right perms....").then(m => m.delete(5000));
 }
@@ -17,6 +18,7 @@ if (!message.member.hasPermission("ADMINISTRATOR")) {
         const role = message.guild.roles.find(r => r.name === name);
         // End the command if the bot cannot find the role on the server.
         if (!role) return message.reply('I can\'t seem to find that role.');
+	if (role.position > author.highestRole.position) return message.channel.send(`Sorry but the role you wanted to add (${role.name}) position(${role.position}) is higher then your highest roles position(${author.highestRole.position})`)
         try {
           await member.addRole(role);
           await message.channel.send(`I've added the ${name} role to ${member.displayName}.`);
@@ -36,6 +38,7 @@ if (!message.member.hasPermission("ADMINISTRATOR")) {
     const role = message.guild.roles.find(r => r.name === name);
     // End the command if the bot cannot find the role on the server.
     if (!role) return message.reply('I can\'t seem to find that role.');
+if (role.position > author.highestRole.position) return message.channel.send(`Sorry but the role you wanted to remove (${role.name}) position(${role.position}) is above  your top role's position(${author.highestRole.position})`)
     try {
       await member.removeRole(role);
       await message.channel.send(`I've removed the ${name} role from ${member.displayName}.`);
@@ -57,6 +60,6 @@ if (!message.member.hasPermission("ADMINISTRATOR")) {
     name: 'role',
     category: 'Moderation',
     description: 'It can give/remove a role to/from a user.\n WARNING DO NOT GIVE MODS THE ABILITY TO HAVE ADMIN PERMS YOUR SERVER WILL BE AT GREAT RISK!' ,
-    usage: 'role <-add | -remove> <role name>'
+    usage: 'role <-add | -remove> <member> <role name>'
   };
   

@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 exports.run = (client, message, args) => {
-  const settings = message.client.getSettings(message.guild.id)
+  const settings = message.client.getSettings(message.guild)
   let reason = args.slice(1).join(' ');
   // Member doesn't have permissions
   if (!message.member.hasPermission("KICK_MEMBERS")) {

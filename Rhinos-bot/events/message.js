@@ -1,7 +1,7 @@
 // The MESSAGE event runs anytime a message is received
 // Note that due to the binding of client to every event, every event
 // goes `client, other, args` when this function is run.
-
+const Discord = require('discord.js')
 module.exports = async (client, message) => {
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop (we call that "botception").
@@ -20,7 +20,7 @@ module.exports = async (client, message) => {
 
   // Also good practice to ignore any message that does not start with our prefix,
   // which is set in the configuration file.
-  if (message.content.indexOf(settings.prefix) !== 0) return;
+  if (message.content.toLowerCase().indexOf(settings.prefix) !== 0) return;
 
   // Here we separate our "command" name, and our "arguments" for the command.
   // e.g. if we have the message "+say Is this the real life?" , we'll get the following:
@@ -46,6 +46,28 @@ module.exports = async (client, message) => {
   // and return a friendly error message.
   if (cmd && !message.guild && cmd.conf.guildOnly)
     return message.channel.send("This command is unavailable via private message. Please run this command in a guild.");
+if (cmd && !cmd.conf.enabled)
+	return message.channel.send("Sorry but this command has been disabled by the devs")
+
+const cooldowns = client.cooldowns
+	if (!cooldowns.has(cmd.help.name)) {
+    cooldowns.set(cmd.help.name, new Discord.Collection());
+}
+
+const now = Date.now();
+const timestamps = cooldowns.get(cmd.help.name)
+const cooldownAmount = (cmd.help.cooldown || 3) * 1000;
+if (timestamps.has(message.author.id)) {
+    const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+
+    if (now < expirationTime) {
+        const timeLeft = (expirationTime - now) / 1000;
+        return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${cmd.help.name}\` command.`)
+    }
+}
+
+timestamps.set(message.author.id, now)
+setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
 
   if (level < client.levelCache[cmd.conf.permLevel]) {
     if (settings.systemNotice === "true") {
@@ -56,6 +78,38 @@ module.exports = async (client, message) => {
       return;
     }
   }
+const idMatcher = /([0-9]{15,21})/g
+const userMentionMatcher = /<@!?([0-9]{15,21})>/
+this.msg = message
+this.args = args
+client.resolveUser = (consumeRest = false, consumeOnFail = true) => {
+ 
+
+const args = consumeRest
+      ? this.args.splice(0).join(' ')
+      : this.args.shift();
+ 
+const idMatch = idMatcher.exec(consumeRest) || userMentionMatcher.exec(consumeRest)
+let ret = null;
+
+if (idMatch) { 
+    
+      ret = this.msg.channel.guild.members.get(idMatch[1])
+
+    } else {
+if (consumeRest.length > 5 && consumeRest.slice(-5, -4) === '#') {
+    ret = this.msg.channel.guild.members.find(member => `${member.user.tag}` === consumeRest || `${member.nickname}#${member.user.discriminator}` === consumeRest);
+      } else {
+        ret = this.msg.channel.guild.members.find(member => member.user.username === consumeRest || member.nickname === consumeRest);
+      }
+    }
+
+if (!ret && !consumeOnFail) {
+      this.args.unshift(...args.split(' '));
+    }
+    
+return ret ? ret.user : null;
+}
   // To simplify message arguments, the author's level is now put on level (not member so it is supported in DMs)
   // The "level" command module argument will be deprecated in the future.
   message.author.permLevel = level;

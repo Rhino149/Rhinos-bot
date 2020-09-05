@@ -34,7 +34,7 @@ message.channel.send(embed);
 }
 }
   exports.conf = {
-    enabled: false,
+    enabled: true,
     aliases: ["lb"],
     guildOnly: true,
     permLevel: 'User'

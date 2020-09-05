@@ -1,19 +1,23 @@
 const Discord = require("discord.js");
 
-module.exports = (client, guild, user, message) => {
-  const settings = client.settings.get("message.guild.id")  
+module.exports = (client, guild, user) => {
+
+  const settings = client.getSettings(guild)  
   if (guild === null) return
 
-  if (settings.logMessageUpdates == 'true') {
+  if (settings.memberLogging === 'true') {
 	if (settings.modLogChannel && guild.channels.find(c => c.name == settings.modLogChannel)) {
 	  const modLogChannel = guild.channels.find(c => c.name == settings.modLogChannel)
 	  if (!modLogChannel.permissionsFor(guild.me).has('VIEW_CHANNEL')) return
 	  if (!modLogChannel.permissionsFor(guild.me).has('SEND_MESSAGES')) return
-    modLogChannel.send(`${user.tag} was just unbanned!`);
+
   let embed = new Discord.RichEmbed()
-    .setColor(0x00AE86)
+    .setColor(3447003)
+	.setTitle('Member unbanned')
+        .setAuthor(user.tag, user.displayAvatarURL)
     .setTimestamp()
-    .setDescription(`**Action:** Unban\n**Target:** ${user.tag}\n**Moderator:** ${guild.client.unbanAuth.tag}\n**Reason:** ${guild.client.unbanReason}`);
+    .setDescription(`${user} was unbanned`)
+	.setFooter(`USER ID: ${user.id}`)
   return modLogChannel.send(embed)
   }
 }

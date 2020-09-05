@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
-  const settings = message.client.getSettings(message.guild.id)
+  const settings = message.client.getSettings(message.guild)
     if (!message.member.hasPermission("MANAGE_ROLES")) {
         return message.reply("You dont have the right perms to use this command....").then(m => m.delete(5000));
     };

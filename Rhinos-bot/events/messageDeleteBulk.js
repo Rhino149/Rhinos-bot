@@ -1,24 +1,25 @@
 const Discord = require('discord.js')
 module.exports = async (client, messages, message, guild) => {
 
-  const settings = client.getSettings(messages.map(m => m.channel.guild).splice(0, 1))
-  if (settings.messageLogging !== "true") return;
-  if (guild === null) return
-  //if (settings.messageLogChannel && messages.guild.channels.find(c => c.name == settings.messageLogChannel)) {
+  const settings = messages.map(c => c.channel).map(g => g.guild).splice(0, 1).map(e => client.getSettings(e)).shift()
 
-  let embed = new Discord.RichEmbed()
+//const messageLoggingLogs = settings.map(e => e.messageLogging).join()
+  if (settings.messageLogging !== "true") return;
+  if (guild === null) return;
+if (messages.filter(d => !d.author.bot).size === 0) return
+
+  const embed = new Discord.RichEmbed()
   .setColor("RANDOM")
-  .setTitle(`${messages.size} messages Purged in #${messages.map(c => c.channel.name).splice(0, 1)}`)
+  .setTitle(`${messages.size} messages purged in #${messages.map(c => c.channel.name).splice(0, 1)}`)
   .setDescription(messages
-  .filter(b => !b.author.bot)
-  .map(m => `**[${m.author.tag}]:** ${m.content}`)
-  .join('\n'))
+.filter(b => !b.author.bot)
+.map(m => `**[${m.author.tag}]:** ${m.content}`)
+.join('\n'))
   .setTimestamp(Date.now() - 5000)
   .setFooter(`${messages.filter(d => !d.author.bot).size} deleted messages listed`)
-  
-  
-console.log(messages.content)
-  messages.map(r => r.guild.channels.find(c => c.name === settings.messageLogChannel).send(embed).catch(console.error))
+ 
+//  const messageLogChannelName = settings.map(e => e.messageLogChannel).join()
+ messages.array().splice(0, 1).map(g => g.guild.channels.find(e => e.name === settings.messageLogChannel).send(embed))
   }
 
 /*

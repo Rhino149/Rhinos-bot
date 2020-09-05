@@ -1,3 +1,4 @@
+require('dotenv').config()
 const config = {
   // Bot Owner, level 10 by default. A User ID. Should never be anything else than the bot owner's ID.
   "ownerID": "338129130237198336",
@@ -9,7 +10,7 @@ const config = {
   "support": [],
 
   // Your Bot's Token. Available on https://discordapp.com/developers/applications/me
-  "token": "NjM2MzExNjY3MjM5NTUxMDA2.Xuhg3A.XYLOgElf-cIyo5I2uHKyjG_CIFk",
+  "token": process.env.CLIENT_TOKEN,
 
   "dashboard" : {
     "oauthSecret": "DbdHjfP5st2ZGESsoQH0u6KBi6W_ckun",
