@@ -38,6 +38,7 @@ if (message.channel.guild.members.find(m => m.id === message.author.id)) {
     let targetuser = await client.money.get(member.id, 'money')
      let author = await client.money.get(message.author.id, 'money')
     if (author < 250) return message.channel.send(':x: You need atleast 250$ to rob somebody.') 
+	if (targetuser > 1e8) return message.channel.send("Thid person is too rich to stop a mass increase in currency a limit has been added sorry")
     if (targetuser < 250) return message.channel.send(`❌ ${member.username} does not have anything to rob.`)
 
     let worth = Math.round(targetuser * 0.33);

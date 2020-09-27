@@ -1,6 +1,7 @@
 exports.run = async (client, message, args) => {
 const cooldowns = new Map();
 const msg = message
+	if (msg.author.bot) return
 let sides1 = Math.floor(Math.random() * 10) + 1;
 let sides2 = Math.floor(Math.random() * 10) + 1;
 const key = msg.author.id;
@@ -24,6 +25,7 @@ if (money < args[0])
       return message.channel.send('You cannot bet less than $50 and cannot bet more than $50000.');
     if (args[0] > 50000)
       return message.channel.send('You cannot bet less than $50 and cannot bet more than $50000.');
+if (money > 2e6) return message.channel.send("Your too rich")
 if (args[0] < 1 || !Number.isInteger(Number(args[0]))) {
       return message.channel.send('Needs to be a whole number greater than 0')
 }
@@ -35,15 +37,18 @@ const response = await client.awaitReply(msg, "High, Low, or End?");
 const high = 'high'
 const low = 'low'
 const end = 'end'
+const high1 = 'High'
+const low1 = 'Low'
+const end1 = 'End'
 if (sides1 > sides2) {
-if (response === high) {
+if (response === high || response === high1) {
   msg.reply(`You choose ${response}`);
                 msg.channel.send("You win!");
                 msg.channel.send(`The number was **__${String(sides2)}__** which was lower than your number: **__${String(sides1)}__**`)
-client.money.set(key, (money + parseInt(Math.round(args[0] * 2))), 'money');
+client.money.set(key, (money + parseInt(Math.round(args[0]))), 'money');
                 return;
          }
-else if (response === low) {
+else if (response === low || response === low1) {
 msg.reply(`You choose ${response}`);
                 msg.channel.send("You lose!");
                 msg.channel.send(`The number was **__${String(sides2)}__** which was lower than your number **__${String(sides1)}__**`)
@@ -52,27 +57,30 @@ return;
 }
 }
 if (sides1 < sides2) {
-if (response === high) {
+if (response === high || response === high1) {
   msg.reply(`You choose ${response}`);
                 msg.channel.send("You lose!");
                 msg.channel.send(`The number was **__${String(sides2)}__** which was higher than your number **__${String(sides1)}__**`)
 client.money.set(key, (money - parseInt(Math.round(args[0]))), 'money');
                 return;
          }
-else if (response === low) {
+else if (response === low || response === low1) {
 msg.reply(`You choose ${response}`);
                 msg.channel.send("You win!");
                 msg.channel.send(`The number was **__${String(sides2)}__** which was higher than your number **__${String(sides1)}__**`)
-client.money.set(key, (money + parseInt(Math.round(args[0] * 2))), 'money');
+client.money.set(key, (money + parseInt(Math.round(args[0]))), 'money');
+	return
     }
-else if (response === end) {
+}
+if (response === end || response === end1) {
 msg.reply(`You choose ${response}`)
 message.channel.send("This game has ended due to your cowardliness.")
 client.money.set(key, (money - parseInt(Math.round(args[0] / 2))), 'money');
             return;
         }
+
 if (sides1 === sides2) {
-if (response === high || low) {
+if (response === high || low || high1 || low1) {
 message.channel.send(`This game has ended with equal numbers. Your Number: ${String(sides1)}, There Number: ${String(sides2)}`)
             return;
 }
@@ -81,8 +89,9 @@ message.channel.send(`This game has ended with equal numbers. Your Number: ${Str
 else {
 message.channel.send("You lose due to your stupidity")
 client.money.set(key, (money - parseInt(Math.round(args[0] / 2))), 'money');
+return
 }
-}
+
 }
 }
 exports.conf = {
