@@ -20,7 +20,7 @@ exports.run = async (client, message, args, level) => {
           .setDescription(`Urban Dictionary does not contain a definition for \`${args[0]}\`.`)
       )
     }
-
+console.log(error)
     const embed = new Discord.MessageEmbed()
       .setColor('#1D2439')
       .setThumbnail('https://i.imgur.com/D19IeLX.png')

@@ -24,12 +24,12 @@ module.exports = async client => {
 
   // Initializes the dashboard, which must be done on ready otherwise some data
   // may be missing from the dashboard. 
-  require("../util/dashboard")(client);  
+  //require("../util/dashboard")(client);  
 
   // Set the game as the default help command + guild count.
   // NOTE: This is also set in the guildCreate and guildDelete events!
   setInterval(function() {
-client.user.setActivity(`I'm Testing!`, {type: "WATCHING"})
+client.user.setActivity(`${client.guilds.cache.size} guilds | prefix is ${client.settings.get("default").prefix}`, {type: "WATCHING"})
   }, 10000)
   // Log that we're ready to serve, so we know the bot accepts commands.
   client.logger.log(`${client.user.tag}, ready to serve ${client.users.cache.size} users in ${client.guilds.cache.size} servers.`, "ready");

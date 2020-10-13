@@ -13,7 +13,7 @@ const Discord = require("discord.js");
 const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 const Enmap = require("enmap");
-const Canvas = require('canvas');
+
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`,
 // or `bot.something`, this is what we're refering to. Your client.

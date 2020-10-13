@@ -9,14 +9,14 @@ const config = {
   "support": [],
 
   // Your Bot's Token. Available on https://discordapp.com/developers/applications/me
-  "token": "NzIxNzU0MTgzNzE1MjU4Mzgw.XuZH9g.b0KySNcfQgXWdg-TYtj8X4jGem4",
+  "token": "NjM2MzExNjY3MjM5NTUxMDA2.Xa9xaw.vjKIKftzz5p3FDclfVP-_skYzSs",
 
   "dashboard" : {
-    "oauthSecret": "nAMI0GVpRq238ewWyfDrVEfvBg_-ODZG",
-    "callbackURL": `http://localhost:8080/callback`,
+    "oauthSecret": "DbdHjfP5st2ZGESsoQH0u6KBi6W_ckun",
+    "callbackURL": `http://localhost:9559/callback`,
     "sessionSecret": "tbh useless",
     "domain": "localhost",
-    "port": 8080
+    "port": 9559
   },
 
   // PERMISSION LEVEL DEFINITIONS.

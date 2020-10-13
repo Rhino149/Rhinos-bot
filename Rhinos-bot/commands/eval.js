@@ -23,9 +23,10 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 	console.log(haste)
 }).catch(error => {
     // Handle error
-	message.channel.send("Output exceeded 2000 characters. Sending as a file. also hastebin service is Unavailable", { files: [{ attachment: Buffer.from(clean), name: "output.txt" }] });
+	message.channel.send("Output exceeded 2000 characters. Sending as a file. also hastebin service might be Unavailable", { files: [{ attachment: Buffer.from(clean), name: "output.txt" }] })
     console.error(error);
-})
+}) 
+
 }
     message.channel.send(clean, { code: "js" } );
   } catch (err) {

@@ -1,15 +1,15 @@
 const Discord = require('discord.js')
-module.exports = async (client, message, guild, member) => {
+module.exports = async (client, message, guild) => {
 
   const settings = client.getSettings(message.guild);
   if (settings.messageLogging !== "true") return;
   if (guild === null) return
-  if (message.author.bot === true) return
+  if (message.member.user.bot) return
   if (settings.messageLogChannel && message.guild.channels.cache.find(c => c.name == settings.messageLogChannel)) {
 
   let embed = new Discord.MessageEmbed()
-  .setAuthor(message.author.tag, message.author.avatarURL)
-  .setThumbnail(message.author.avatarURL)
+  .setAuthor(message.author.tag, message.author.avatarURL())
+  .setThumbnail(message.author.avatarURL())
   .setColor("RANDOM")
   .setTitle(`Message was sent in #${message.channel.name}`) 
   .setDescription(`${message.content}`)
@@ -18,7 +18,7 @@ module.exports = async (client, message, guild, member) => {
   
   
 
-  message.guild.channels.cache.find(c => c.name === settings.messageLogChannel).send(embed).catch(console.error);
+  message.guild.channels.cache.find(c => c.name === settings.messageLogChannel).send(embed)
   }
 }
 
